@@ -1,4 +1,4 @@
-package com.your_teachers.trafficrules.retrofit
+package com.testforme.newregistr.retrofit
 
 import com.google.gson.annotations.SerializedName
 

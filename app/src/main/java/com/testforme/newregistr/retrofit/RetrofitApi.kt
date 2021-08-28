@@ -1,7 +1,7 @@
-package com.your_teachers.trafficrules.retrofit
+package com.testforme.newregistr.retrofit
 
 import com.google.gson.GsonBuilder
-import com.your_teachers.trafficrules.ui.activities.MainActivity.Companion.MAIN_SITE_URL
+import com.testforme.newregistr.MainActivity.Companion.MAIN_SITE_URL
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit

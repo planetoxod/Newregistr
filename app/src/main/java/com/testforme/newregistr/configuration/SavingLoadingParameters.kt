@@ -2,7 +2,7 @@ package com.testforme.newregistr.configuration
 
 import android.content.Context
 import com.google.gson.Gson
-import com.testforme.newregistr.User
+import com.testforme.newregistr.objects.User
 import java.io.IOException
 import java.io.ObjectInputStream
 import java.io.ObjectOutputStream

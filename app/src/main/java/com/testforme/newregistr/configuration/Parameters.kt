@@ -2,7 +2,7 @@ package com.testforme.newregistr.configuration
 
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
-import com.testforme.newregistr.User
+import com.testforme.newregistr.objects.User
 import com.testforme.newregistr.objects.ItemType
 import com.your_teachers.trafficrules.objects.*
 import kotlinx.parcelize.Parcelize

@@ -1,50 +1,31 @@
-package com.testforme.newregistr
+package com.testforme.newregistr.objects
 
 import android.os.Parcelable
-import com.bumptech.glide.load.resource.bitmap.VideoDecoder.parcel
 import com.google.gson.annotations.SerializedName
-import com.testforme.newregistr.ui.configuration.Parameters
-import com.testforme.newregistr.objects.ItemType
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class User(
     @SerializedName("id")
-    var id: Int,
+    var id: String,
+    @SerializedName("phone")
+    var phone: String,
     @SerializedName("name")
     var name: String,
-    @SerializedName("username")
-    var login: String,
-    @SerializedName("imageURL")
-    var imageURL: String,
     @SerializedName("email")
     var email: String,
-    @SerializedName("registerDate")
-    var registerDate: String,
+    @SerializedName("birthday")
+    var birthday: String,
+    @SerializedName("avatar")
+    var avatar: String,
+    @SerializedName("dt_create")
+    var dt_create: String,
+    @SerializedName("enabled")
+    var enabled: Boolean,
     @SerializedName("token")
     var token: String
 ): Parcelable, ItemType {
 
     override val itemType: Int
         get() = ItemType.TYPE_USER
-
-    constructor(userOld: User) : this(
-        userOld.id,
-        userOld.name,
-        userOld.login,
-        userOld.imageURL,
-        userOld.email,
-        userOld.registerDate,
-        userOld.token
-    )
-
-    fun compare(user: User): Boolean {
-        return id == user.id &&
-                name == user.name &&
-                login == user.login &&
-                imageURL == user.imageURL &&
-                email == user.email &&
-                registerDate == user.registerDate &&
-                token == user.token
-    }
 }
