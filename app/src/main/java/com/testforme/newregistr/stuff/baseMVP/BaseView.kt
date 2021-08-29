@@ -1,7 +1,7 @@
-package com.your_teachers.trafficrules.stuff.baseMVP
+package com.testforme.newregistr.stuff.baseMVP
 
 import android.os.Bundle
-import com.your_teachers.trafficrules.objects.ErrorText
+import com.testforme.newregistr.objects.ErrorText
 
 interface BaseView {
 

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Newregistr</string>
+    <string name="menu_authorization">Авторизация</string>
+    <string name="menu_registration">Регистрация</string>
+    <string name="title_profile">Профиль</string>
+    <string name="sign_in">Войти</string>
+    <string name="sign_up">Выйти</string>
+</resources>

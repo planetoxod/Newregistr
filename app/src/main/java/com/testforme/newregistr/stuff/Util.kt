@@ -1,4 +1,4 @@
-package com.your_teachers.trafficrules.stuff
+package com.testforme.newregistr.stuff
 
 import android.content.Context
 import android.graphics.Bitmap

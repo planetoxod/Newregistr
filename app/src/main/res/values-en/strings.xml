@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Newregistr</string>
+    <string name="menu_registration">Registration</string>
+    <string name="menu_authorization">Authorization</string>
+    <string name="title_profile">Profile</string>
+    <string name="sign_in">Sign in</string>
+    <string name="sign_up">Sign up</string>
+</resources>

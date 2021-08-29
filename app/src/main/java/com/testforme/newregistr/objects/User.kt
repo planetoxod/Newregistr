@@ -26,6 +26,18 @@ data class User(
     var token: String
 ): Parcelable, ItemType {
 
+    constructor(userOld: User) : this(
+        userOld.id,
+        userOld.phone,
+        userOld.name,
+        userOld.email,
+        userOld.birthday,
+        userOld.avatar,
+        userOld.dt_create,
+        userOld.enabled,
+        userOld.token
+    )
+
     override val itemType: Int
         get() = ItemType.TYPE_USER
 }

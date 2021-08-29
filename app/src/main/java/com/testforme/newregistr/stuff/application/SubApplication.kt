@@ -1,7 +1,7 @@
-package com.your_teachers.trafficrules.stuff.application
+package com.testforme.newregistr.stuff.application
 
 import android.app.Application
-import com.your_teachers.trafficrules.stuff.UserHelperImpl
+import com.testforme.newregistr.stuff.UserHelperImpl
 
 class SubApplication : Application() {
 

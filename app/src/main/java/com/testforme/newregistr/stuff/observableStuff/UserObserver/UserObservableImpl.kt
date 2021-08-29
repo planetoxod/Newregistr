@@ -1,6 +1,6 @@
-package com.your_teachers.trafficrules.stuff.observableStuff.UserObserver
+package com.testforme.newregistr.stuff.observableStuff.UserObserver
 
-import com.your_teachers.trafficrules.objects.User
+import com.testforme.newregistr.objects.User
 import java.util.ArrayList
 
 open class UserObservableImpl : UserObservable {

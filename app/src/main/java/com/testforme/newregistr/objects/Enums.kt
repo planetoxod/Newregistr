@@ -1,4 +1,4 @@
-package com.your_teachers.trafficrules.objects
+package com.testforme.newregistr.objects
 
 import com.google.gson.annotations.SerializedName
 

@@ -1,9 +1,9 @@
-package com.your_teachers.trafficrules.stuff.baseMVP
+package com.testforme.newregistr.stuff.baseMVP
 
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.your_teachers.trafficrules.R
-import com.your_teachers.trafficrules.objects.ErrorText
+import com.testforme.newregistr.R
+import com.testforme.newregistr.objects.ErrorText
 import leakcanary.LeakSentry
 
 abstract class BaseActivityImpl : AppCompatActivity(), BaseView {

@@ -1,4 +1,4 @@
-package com.your_teachers.trafficrules.stuff.baseMVP
+package com.testforme.newregistr.stuff.baseMVP
 
 interface BasePresenter<V : BaseView> {
 

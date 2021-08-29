@@ -1,13 +1,69 @@
 <resources>
     <string name="app_name">Newregistr</string>
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">Android Studio</string>
-    <string name="nav_header_subtitle">android.studio@android.com</string>
-    <string name="nav_header_desc">Navigation header</string>
-    <string name="action_settings">Settings</string>
+    <string name="navigation_drawer_open" translatable="false">Open navigation drawer</string>
+    <string name="navigation_drawer_close" translatable="false">Close navigation drawer</string>
+    <string name="nav_header_title" translatable="false">Android Studio</string>
+    <string name="nav_header_subtitle" translatable="false">android.studio@android.com</string>
+    <string name="nav_header_desc" translatable="false">Navigation header</string>
+    <string name="action_settings" translatable="false">Settings</string>
 
-    <string name="menu_home">Home</string>
-    <string name="menu_gallery">Gallery</string>
-    <string name="menu_slideshow">Slideshow</string>
+    <string name="menu_home" translatable="false">Home</string>
+    <string name="menu_gallery" translatable="false">Gallery</string>
+    <string name="menu_slideshow" translatable="false">Slideshow</string>
+    <string name="menu_registration">Registration</string>
+    <string name="menu_authorization">Authorization</string>
+
+    <string name="app_package" translatable="false">com.your_teachers.trafficrules</string>
+    <string name="site_url" translatable="false">netoct.ru</string>
+
+    <string name="file_provider" translatable="false">com.your_teachers.trafficrules.fileprovider</string>
+
+    <string name="yes" translatable="false">Yes</string>
+    <string name="no" translatable="false">No</string>
+
+    <string name="title_profile"> Profile </string>
+    <string name="sign_in">Sign in</string>
+    <string name="sign_up">Sign up</string>
+    <string name="auth_login" translatable="false">Email or Login</string>
+    <string name="auth_password" translatable="false">Password</string>
+    <string name="regist_name" translatable="false">Name</string>
+    <string name="regist_login" translatable="false">Login</string>
+    <string name="regist_email" translatable="false">Email</string>
+    <string name="regist_password" translatable="false">Password</string>
+    <string name="profile_name" translatable="false">Name</string>
+    <string name="profile_login" translatable="false">Login</string>
+    <string name="profile_email" translatable="false">Email</string>
+    <string name="profile_reg_date" translatable="false"> Registered </string>
+    <string name="error" translatable="false">Error</string>
+    <string name="not_auth_content" translatable="false"> Saving statistics is available only to authorized users </string>
+    <string name="btn_link_to_register" translatable="false"> Not registered? Register now. </string>
+    <string name="btn_link_to_login" translatable="false"> Already a member? Sign in. </string>
+    <string name="error_empty" translatable="false"> This field cannot be empty </string>
+    <string name="error_invalid_email" translatable="false"> This email address is not suitable! </string>
+    <string name="error_login_taken" translatable="false"> This login is already taken! </string>
+    <string name="error_email_taken" translatable="false"> This email is already taken! </string>
+    <string name="error_min_password_length_is" translatable="false"> Min password length is %d </string>
+    <string name="error_loading_data" translatable="false"> Error loading data </string>
+    <string name="error_file_not_found" translatable="false">File not found</string>
+    <string name="error_compress_image" translatable="false">Compress image error</string>
+    <string name="error_user_is_null" translatable="false">Error, user not found</string>
+    <string name="error_invalid_viewType" translatable="false">Error, invalid ViewType</string>
+    <string name="error_unhandled_error" translatable="false">Unhandled error</string>
+    <string name="please_wait" translatable="false"> Please wait.. </string>
+    <string name="text_toolbar_count" translatable="false"> %d/%d </string>
+    <string name="update" translatable="false"> Update </string>
+    <string name="empty" translatable="false"> Empty </string>
+    <string name="continueI" translatable="false">Want to continue?</string>
+    <string name="not_enough_data" translatable="false">Not enough data to build chart</string>
+    <string name="permission_request" translatable="false">No needed permissions</string>
+    <string name="open_settings" translatable="false">Open settings</string>
+    <string name="pick_single" translatable="false">Select image</string>
+    <string name="image" translatable="false">image</string>
+    <string name="something_went" translatable="false">Something went…</string>
+    <string name="description" translatable="false">Description</string>
+    <string name="license_txt" translatable="false">Unknown error, contact the developer.</string>
+    <string name="title_stop" translatable="false">stop</string>
+    <string name="title_cancel" translatable="false">cancel</string>
+    <string name="title_help" translatable="false">help</string>
+
 </resources>

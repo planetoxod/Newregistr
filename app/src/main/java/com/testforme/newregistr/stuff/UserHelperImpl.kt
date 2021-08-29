@@ -1,10 +1,10 @@
-package com.your_teachers.trafficrules.stuff
+package com.testforme.newregistr.stuff
 
-import com.facebook.login.LoginManager
 import com.google.gson.Gson
-import com.your_teachers.trafficrules.stuff.application.SharedPrefHelper
-import com.your_teachers.trafficrules.objects.User
-import com.your_teachers.trafficrules.stuff.observableStuff.UserObserver.UserObservableImpl
+import com.testforme.newregistr.stuff.application.SharedPrefHelper
+import com.testforme.newregistr.objects.User
+import com.testforme.newregistr.stuff.observableStuff.UserObserver.UserObservableImpl
+import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
@@ -20,21 +20,24 @@ class UserHelperImpl : UserObservableImpl() {
     fun updateUser(user: User) {
         this.user?.let {thisUser ->
             thisUser.id = user.id
-            thisUser.login = user.login
+            thisUser.birthday = user.birthday
+            thisUser.avatar = user.avatar
             thisUser.name = user.name
-            thisUser.imageURL = user.imageURL
+            thisUser.dt_create = user.dt_create
             thisUser.email = user.email
-            thisUser.registerDate = user.registerDate
+            thisUser.enabled = user.enabled
+            thisUser.phone = user.phone
+            thisUser.token = user.token
 
             notifyUserUpdate()
         }
     }
 
+    @DelicateCoroutinesApi
     fun removeUser() {
         this.user = null
         notifyUserRemove()
         GlobalScope.launch {
-            LoginManager.getInstance().logOut()
             SharedPrefHelper.getInstance().writePreferences("user", "")
         }
     }

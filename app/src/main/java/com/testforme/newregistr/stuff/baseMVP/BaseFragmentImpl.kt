@@ -1,11 +1,11 @@
-package com.your_teachers.trafficrules.stuff.baseMVP
+package com.testforme.newregistr.stuff.baseMVP
 
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import com.your_teachers.trafficrules.R
-import com.your_teachers.trafficrules.objects.ErrorText
+import com.testforme.newregistr.R
+import com.testforme.newregistr.objects.ErrorText
 import leakcanary.LeakSentry
 
 abstract class BaseFragmentImpl : Fragment(),
@@ -54,9 +54,6 @@ abstract class BaseFragmentImpl : Fragment(),
             ErrorText.UserIsNullError -> {
                 message = resources.getString(R.string.error_user_is_null)
             }
-            ErrorText.FileNotFoundError -> {
-                message = resources.getString(R.string.error_file_not_found)
-            }
             ErrorText.CompressError -> {
                 message = resources.getString(R.string.error_compress_image)
             }
@@ -66,6 +63,7 @@ abstract class BaseFragmentImpl : Fragment(),
             ErrorText.UnhandledError -> {
                 message = resources.getString(R.string.error_unhandled_error)
             }
+            else -> message = resources.getString(R.string.error_unhandled_error)
         }
 
         toast?.cancel()
