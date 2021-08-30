@@ -7,9 +7,9 @@
 
     <fragment
         android:id="@+id/nav_profile"
-        android:name="com.testforme.newregistr.ui.home.ProfileFragment"
+        android:name="com.testforme.newregistr.ui.profile.ProfileFragment"
         android:label="@string/menu_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_profile" />
 
     <fragment
         android:id="@+id/nav_authorization"

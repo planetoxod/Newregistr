@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:orientation="vertical"
+        android:clickable="true"
+        android:foreground="?android:attr/selectableItemBackground"
+        >
+
+        <TextView
+            android:id="@+id/name_desc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/profile_name" />
+
+        <EditText
+            android:id="@+id/name_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:singleLine="true"
+            android:textColor="@color/textStandardBlackBackgroundColor"
+            android:textSize="16sp"
+            tools:text="Иван ИвановИван ИвановИван ИвановИван ИвановИван ИвановИван ИвановИван ИвановИван ИвановИван ИвановИван ИвановИван ИвановИван ИвановИван ИвановИван ИвановИван ИвановИван ИвановИван ИвановИван ИвановИван ИвановИван ИвановИван ИвановИван ИвановИван ИвановИван ИвановИван ИвановИван ИвановИван ИвановИван ИвановИван ИвановИван ИвановИван ИвановИван ИвановИван ИвановИван ИвановИван ИвановИван ИвановИван ИвановИван ИвановИван ИвановИван ИвановИван ИвановИван ИвановИван ИвановИван ИвановИван ИвановИван ИвановИван ИвановИван ИвановИван ИвановИван ИвановИван ИвановИван ИвановИван ИвановИван ИвановИван ИвановИван ИвановИван ИвановИван ИвановИван ИвановИван ИвановИван ИвановИван ИвановИван ИвановИван ИвановИван ИвановИван ИвановИван ИвановИван ИвановИван ИвановИван ИвановИван ИвановИван ИвановИван ИвановИван ИвановИван ИвановИван ИвановИван ИвановИван ИвановИван ИвановИван ИвановИван ИвановИван ИвановИван ИвановИван ИвановИван ИвановИван ИвановИван ИвановИван ИвановИван ИвановИван ИвановИван ИвановИван ИвановИван ИвановИван ИвановИван ИвановИван ИвановИван ИвановИван ИвановИван ИвановИван ИвановИван ИвановИван ИвановИван ИвановИван ИвановИван ИвановИван ИвановИван ИвановИван ИвановИван ИвановИван ИвановИван ИвановИван Иванов" />
+
+        <View
+            android:id="@+id/divider2"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="8dp"
+            android:background="?android:attr/listDivider" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:orientation="vertical"
+        android:clickable="true"
+        android:foreground="?android:attr/selectableItemBackground"
+        >
+
+        <TextView
+            android:id="@+id/phone_desc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/profile_phone" />
+
+        <EditText
+            android:id="@+id/Phone_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="phone"
+            android:singleLine="true"
+            android:textColor="@color/textStandardBlackBackgroundColor"
+            android:textSize="16sp"
+            tools:text="+7(934)789-56-78" />
+
+        <View
+            android:id="@+id/divider3"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="8dp"
+            android:background="?android:attr/listDivider" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:orientation="vertical"
+        android:clickable="true"
+        android:foreground="?android:attr/selectableItemBackground"
+        >
+
+        <TextView
+            android:id="@+id/email_desc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/profile_email" />
+
+        <EditText
+            android:id="@+id/email_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress"
+            android:singleLine="true"
+            android:textColor="@color/textStandardBlackBackgroundColor"
+            android:textSize="16sp"
+            tools:text="ivan_ivanov@mail.ru" />
+
+        <View
+            android:id="@+id/divider4"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="8dp"
+            android:background="?android:attr/listDivider" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/birthday"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:orientation="vertical"
+        android:clickable="true"
+        android:foreground="?android:attr/selectableItemBackground"
+        >
+
+        <TextView
+            android:id="@+id/birthday_desc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/profile_birthday" />
+
+        <EditText
+            android:id="@+id/birthday_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="datetime|textEmailAddress"
+            android:singleLine="true"
+            android:textColor="@color/textStandardBlackBackgroundColor"
+            android:textSize="16sp"
+            tools:text="ivan_ivanov@mail.ru" />
+
+        <View
+            android:id="@+id/divider6"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="8dp"
+            android:background="?android:attr/listDivider" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/reg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:orientation="vertical"
+        android:clickable="true"
+        android:foreground="?android:attr/selectableItemBackground"
+        >
+
+        <TextView
+            android:id="@+id/reg_desc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/profile_reg_date" />
+
+        <EditText
+            android:id="@+id/reg_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="datetime"
+            android:singleLine="true"
+            android:textColor="@color/textStandardBlackBackgroundColor"
+            android:textSize="16sp"
+            tools:text="08-08-2008 18:06:48" />
+
+        <View
+            android:id="@+id/divider5"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="8dp"
+            android:background="?android:attr/listDivider" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/enabled"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:orientation="vertical"
+        android:clickable="true"
+        android:foreground="?android:attr/selectableItemBackground"
+        >
+
+        <TextView
+            android:id="@+id/enabled_desc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/profile_enabled" />
+
+        <EditText
+            android:id="@+id/enabled_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:importantForAutofill="no"
+            android:inputType="text"
+            android:singleLine="true"
+            android:textColor="@color/textStandardBlackBackgroundColor"
+            android:textSize="16sp"
+            tools:ignore="LabelFor"
+            tools:text="Enable" />
+
+        <View
+            android:id="@+id/divider7"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="8dp"
+            android:background="?android:attr/listDivider" />
+    </LinearLayout>
+    <!--<LinearLayout-->
+        <!--android:id="@+id/last_modif"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:padding="8dp"-->
+        <!--android:orientation="vertical"-->
+        <!--android:clickable="true"-->
+        <!--android:foreground="?android:attr/selectableItemBackground" >-->
+
+        <!--<TextView-->
+            <!--android:id="@+id/last_modif_desc"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="@string/profile_last_modif_date" />-->
+
+        <!--<TextView-->
+            <!--android:id="@+id/last_modif_view"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--tools:text="08-08-2018"-->
+            <!--android:textSize="16sp"-->
+            <!--android:textColor="@color/textStandardBlackBackgroundColor" />-->
+
+    <!--</LinearLayout>-->
+
+</LinearLayout>

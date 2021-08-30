@@ -7,4 +7,20 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <color name="gray_more_white">#FAFAFA</color>
+    <color name="colorPrimary">#246AB2</color>
+    <color name="colorPrimaryDark">#246AB2</color>
+    <color name="colorAccent">#246AB2</color>
+    <color name="textStandardWhiteBackgroundColor">#FFFFFF</color>
+    <color name="textStandardPrimaryBackgroundColor">#4E54C8</color>
+    <color name="textStandardBlackBackgroundColor">#246AB2</color>
+    <color name="textStandardDarkFontColor">#1F5C9C</color>
+    <color name="wrong_answer">#FF8888</color>
+    <color name="bottom_color_sheet">#EFF8FB</color>
+    <color name="navigate_menu">#E0FFF2</color>
+    <color name="exam_passed">#2EFD00</color>
+    <color name="exam_not_passed">#D80110</color>
+    <color name="result_neutral">#E7F3FF</color>
+    <color name="close_card">#69A8DF</color>
 </resources>
