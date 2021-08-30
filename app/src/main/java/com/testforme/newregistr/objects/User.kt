@@ -21,7 +21,7 @@ data class User(
     @SerializedName("dt_create")
     var dt_create: String,
     @SerializedName("enabled")
-    var enabled: Boolean,
+    var enabled: String,
     @SerializedName("token")
     var token: String
 ): Parcelable, ItemType {

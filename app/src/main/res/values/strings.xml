@@ -12,6 +12,9 @@
     <string name="menu_slideshow" translatable="false">Slideshow</string>
     <string name="menu_registration">Registration</string>
     <string name="menu_authorization">Authorization</string>
+    <string name="menu_profile" translatable="false">Profile</string>
+    <string name="enable" translatable="false">Enable</string>
+    <string name="disabled" translatable="false">Disabled</string>
 
     <string name="app_package" translatable="false">com.your_teachers.trafficrules</string>
     <string name="site_url" translatable="false">netoct.ru</string>

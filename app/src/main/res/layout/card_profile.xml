@@ -157,11 +157,10 @@
             android:layout_height="wrap_content"
             android:text="@string/profile_reg_date" />
 
-        <EditText
+        <TextView
             android:id="@+id/reg_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="datetime"
             android:singleLine="true"
             android:textColor="@color/textStandardBlackBackgroundColor"
             android:textSize="16sp"
@@ -191,12 +190,11 @@
             android:layout_height="wrap_content"
             android:text="@string/profile_enabled" />
 
-        <EditText
+        <TextView
             android:id="@+id/enabled_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:importantForAutofill="no"
-            android:inputType="text"
             android:singleLine="true"
             android:textColor="@color/textStandardBlackBackgroundColor"
             android:textSize="16sp"
@@ -210,29 +208,6 @@
             android:layout_marginTop="8dp"
             android:background="?android:attr/listDivider" />
     </LinearLayout>
-    <!--<LinearLayout-->
-        <!--android:id="@+id/last_modif"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:padding="8dp"-->
-        <!--android:orientation="vertical"-->
-        <!--android:clickable="true"-->
-        <!--android:foreground="?android:attr/selectableItemBackground" >-->
 
-        <!--<TextView-->
-            <!--android:id="@+id/last_modif_desc"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:text="@string/profile_last_modif_date" />-->
-
-        <!--<TextView-->
-            <!--android:id="@+id/last_modif_view"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--tools:text="08-08-2018"-->
-            <!--android:textSize="16sp"-->
-            <!--android:textColor="@color/textStandardBlackBackgroundColor" />-->
-
-    <!--</LinearLayout>-->
 
 </LinearLayout>
