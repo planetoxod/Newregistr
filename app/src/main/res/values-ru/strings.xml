@@ -6,4 +6,12 @@
     <string name="title_profile">Профиль</string>
     <string name="sign_in">Войти</string>
     <string name="sign_up">Выйти</string>
+    <string name="auth_password">Пароль</string>
+    <string name="profile_name" translatable="false">Имя</string>
+    <string name="profile_enabled">Активен</string>
+    <string name="profile_reg_date">Зарегистрирован</string>
+    <string name="profile_birthday">День рождения</string>
+    <string name="profile_email">Почта</string>
+    <string name="profile_phone">Телефон</string>
+    <string name="save" translatable="false">Сохранить</string>
 </resources>

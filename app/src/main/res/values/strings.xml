@@ -15,6 +15,7 @@
     <string name="menu_profile" translatable="false">Profile</string>
     <string name="enable" translatable="false">Enable</string>
     <string name="disabled" translatable="false">Disabled</string>
+    <string name="def_name" translatable="false">Ivanov Ivan Ivanovich</string>
 
     <string name="app_package" translatable="false">com.your_teachers.trafficrules</string>
     <string name="site_url" translatable="false">netoct.ru</string>
@@ -28,18 +29,18 @@
     <string name="sign_in">Sign in</string>
     <string name="sign_up">Sign up</string>
     <string name="auth_login" translatable="false">Email or Login</string>
-    <string name="auth_password" translatable="false">Password</string>
+    <string name="auth_password">Password</string>
     <string name="regist_name" translatable="false">Name</string>
     <string name="regist_login" translatable="false">Login</string>
     <string name="regist_email" translatable="false">Email</string>
     <string name="regist_password" translatable="false">Password</string>
-    <string name="profile_name" translatable="false">Name</string>
-    <string name="profile_phone" translatable="false">Phone</string>
-    <string name="profile_email" translatable="false">Email</string>
-    <string name="profile_birthday" translatable="false">Birthday</string>
+    <string name="profile_name">Name</string>
+    <string name="profile_phone">Phone</string>
+    <string name="profile_email">Email</string>
+    <string name="profile_birthday">Birthday</string>
 
-    <string name="profile_reg_date" translatable="false"> Registered </string>
-    <string name="profile_enabled" translatable="false"> Enabled </string>
+    <string name="profile_reg_date"> Registered </string>
+    <string name="profile_enabled"> Enabled </string>
     <string name="error" translatable="false">Error</string>
     <string name="not_auth_content" translatable="false"> Saving statistics is available only to authorized users </string>
     <string name="btn_link_to_register" translatable="false"> Not registered? Register now. </string>
@@ -66,10 +67,11 @@
     <string name="pick_single" translatable="false">Select image</string>
     <string name="image" translatable="false">image</string>
     <string name="something_went" translatable="false">Something went…</string>
+    <string name="save" translatable="false">Save</string>
     <string name="description" translatable="false">Description</string>
     <string name="license_txt" translatable="false">Unknown error, contact the developer.</string>
     <string name="title_stop" translatable="false">stop</string>
-    <string name="title_cancel" translatable="false">cancel</string>
+    <string name="title_cancel" translatable="false">Cancel</string>
     <string name="title_help" translatable="false">help</string>
 
 </resources>

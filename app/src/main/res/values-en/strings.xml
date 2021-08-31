@@ -6,4 +6,12 @@
     <string name="title_profile">Profile</string>
     <string name="sign_in">Sign in</string>
     <string name="sign_up">Sign up</string>
+    <string name="auth_password">Password</string>
+    <string name="profile_name" translatable="false">Name</string>
+    <string name="profile_enabled">Enabled</string>
+    <string name="profile_reg_date">Registered</string>
+    <string name="profile_birthday">Birthday</string>
+    <string name="profile_email">Email</string>
+    <string name="profile_phone">Phone</string>
+    <string name="save" translatable="false">Save</string>
 </resources>
