@@ -220,20 +220,20 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="52dp">
 
         <ImageButton
             android:id="@+id/imageButton"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
+            android:layout_width="120dp"
+            android:layout_height="52dp"
             android:layout_margin="8dp"
-            android:background="@drawable/custom_btn"
+            android:background="@drawable/save_selector_btn"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="ContentDescription" />
+            tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
 
         <TextView
             android:id="@+id/textView"

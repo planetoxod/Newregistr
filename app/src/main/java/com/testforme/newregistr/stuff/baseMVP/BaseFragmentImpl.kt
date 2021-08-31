@@ -21,14 +21,14 @@ abstract class BaseFragmentImpl : Fragment(),
 //        return super.onCreateView(inflater, container, savedInstanceState)
 //    }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+//    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+//        super.onViewCreated(view, savedInstanceState)
+//
+//        if (savedInstanceState != null)
+//            onRestoreInstanceStateI(savedInstanceState)
+//    }
 
-        if (savedInstanceState != null)
-            onRestoreInstanceStateI(savedInstanceState)
-    }
-
-    abstract fun initView(view: View)
+   // abstract fun initView(view: View)
 
     override fun showToast(text: String, isLong: Boolean) {
         if (toast != null)
@@ -76,10 +76,10 @@ abstract class BaseFragmentImpl : Fragment(),
         }
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-
-        val refWatcher = LeakSentry.refWatcher
-        refWatcher.watch(this)
-    }
+//    override fun onDestroy() {
+//        super.onDestroy()
+//
+//        val refWatcher = LeakSentry.refWatcher
+//        refWatcher.watch(this)
+//    }
 }

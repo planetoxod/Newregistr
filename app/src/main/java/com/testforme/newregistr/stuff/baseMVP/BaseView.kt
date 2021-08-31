@@ -13,6 +13,6 @@ interface BaseView {
 
     fun showToast(text: ErrorText, isLong: Boolean = false)
 
-    fun onRestoreInstanceStateI(savedInstanceState: Bundle)
+   // fun onRestoreInstanceStateI(savedInstanceState: Bundle)
 
 }

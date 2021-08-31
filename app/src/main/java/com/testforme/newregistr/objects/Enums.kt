@@ -24,14 +24,17 @@ enum class ErrorText {
     FileNotFoundError,
     CompressError,
     CardError,
-    UnhandledError
+    UnhandledError,
+    Success,
+    NoError
 }
 
 enum class ViewErrorCodes {
     NAME_IS_EMPTY,
+    USER_IS_EMPTY,
     LOGIN_IS_EMPTY,
     EMAIL_IS_EMPTY,
     EMAIL_NOT_VALID,
-    PASSWORD_IS_EMPTY,
-    PASSWORD_TOO_SHORT
+    PHONE_IS_EMPTY,
+    PHONE_TOO_SHORT
 }

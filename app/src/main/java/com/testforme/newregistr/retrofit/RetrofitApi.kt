@@ -10,7 +10,7 @@ import java.util.concurrent.TimeUnit
 
 object RetrofitApi {
 
-    private var BASE_URL = MAIN_SITE_URL+"appstack/"
+    private var BASE_URL = "$MAIN_SITE_URL/"
     private var retrofit: Retrofit? = null
 
     fun getInstance(): Retrofit {

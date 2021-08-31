@@ -1,11 +1,14 @@
 package com.testforme.newregistr.ui.profile
 
 import android.content.Context
+import android.os.Message
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.testforme.newregistr.R
+import com.testforme.newregistr.objects.ErrorText
 import com.testforme.newregistr.stuff.application.SharedPrefHelper
+import java.lang.Error
 
 class ProfileViewModel() : ViewModel() {
     private lateinit var profileModel: ProfileModel
@@ -21,6 +24,10 @@ class ProfileViewModel() : ViewModel() {
         changeField()
     }
 
+    fun showToast(errorText: ErrorText){
+       _toast.value=errorText
+    }
+
     private fun changeField(){
         _name.value = user?.name ?: somethingWent
         _phone.value = user?.phone ?: somethingWent
@@ -30,7 +37,7 @@ class ProfileViewModel() : ViewModel() {
         _enabled.value = user?.phone ?: somethingWent
     }
 
-    private val user =  SharedPrefHelper.getInstance().getUserObject()
+    val user =  SharedPrefHelper.getInstance().getUserObject()
 
     private val _name = MutableLiveData<String>().apply {
         value = user?.name ?: somethingWent
@@ -61,6 +68,11 @@ class ProfileViewModel() : ViewModel() {
         value = user?.enabled ?: somethingWent
     }
     val enabled: LiveData<String> = _enabled
+
+   private val _toast = MutableLiveData<ErrorText>().apply {
+        value = ErrorText.NoError
+   }
+    var toast: LiveData<ErrorText> = _toast
 
 
 }

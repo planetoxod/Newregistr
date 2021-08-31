@@ -8,8 +8,13 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.testforme.newregistr.databinding.FragmentProfileBinding
 import com.testforme.newregistr.databinding.ProfileContentBinding
+import com.testforme.newregistr.objects.ErrorText
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
-class ProfileFragment : Fragment() {
+class ProfileFragment : Fragment(), ToastController {
 
     private lateinit var profileViewModel: ProfileViewModel
     private lateinit var profileModel: ProfileModel
@@ -31,6 +36,8 @@ class ProfileFragment : Fragment() {
             ViewModelProvider(this).get(ProfileViewModel::class.java)
 
         profileModel.setViewModel(profileViewModel)
+        profileViewModel.setModel(profileModel)
+        profileModel.authWithPass()
 
         activity?.let { profileViewModel.setSomethingWent(it.application) }
 
@@ -62,13 +69,38 @@ class ProfileFragment : Fragment() {
             profileView.profileCard.enabledView.text = it
         })
 
+        profileViewModel.toast.observe(viewLifecycleOwner, {
+            showToast(it)
+        })
+
         profileView.scrollView.visibility=View.VISIBLE
 
         return root
+    }
+
+    override fun showToast(text: String, isLong: Boolean) {
+    }
+
+    override fun showToast(text: ErrorText, isLong: Boolean) {
+    }
+
+    override fun showProgressDialog() {
+
+//        if (!progressDialog.isShowing) {
+//                progressDialog.show()
+//        }
+    }
+
+    override fun hideProgressDialog() {
+
+//        if (progressDialog.isShowing) {
+//            progressDialog.dismiss()
+//        }
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
+
 }

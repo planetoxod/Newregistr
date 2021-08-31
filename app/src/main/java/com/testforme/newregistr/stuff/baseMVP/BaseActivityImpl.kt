@@ -22,7 +22,7 @@ abstract class BaseActivityImpl : AppCompatActivity(), BaseView {
     }
 
     override fun showToast(text: ErrorText, isLong: Boolean) {
-        val message: String
+        var message=""
         when (text) {
             ErrorText.InvalidViewTypeError -> {
                 message = resources.getString(R.string.error_invalid_viewType)

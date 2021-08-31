@@ -52,7 +52,7 @@ class MainActivity : AppCompatActivity() {
         const val SUBCATALOG_SIGNS = 1
         const val SUBCATALOG_TRAININGMAPS = 2
 
-        const val MAIN_SITE_URL = "https://stacktest.ru/"
+        const val MAIN_SITE_URL = "https://netoct.ru"
 
         fun getColorWrapper(context: Context, id: Int): Int {
             return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {

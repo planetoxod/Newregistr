@@ -1,3 +1,3 @@
-package com.your_teachers.trafficrules.retrofit
+package com.testforme.newregistr.retrofit
 
-data class LoginBody(val login: String, val password: String)
+data class LoginBody(val phone: String, val id: String)
