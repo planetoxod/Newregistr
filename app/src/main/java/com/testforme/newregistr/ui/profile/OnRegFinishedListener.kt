@@ -1,6 +1,6 @@
 package com.testforme.newregistr.ui.profile
 
-interface OnFinishedListener {
+interface OnRegFinishedListener {
 
     fun onFinished(authResponse: AuthResponse)
 

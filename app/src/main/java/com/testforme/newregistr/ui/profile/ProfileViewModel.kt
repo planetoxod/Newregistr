@@ -1,14 +1,12 @@
 package com.testforme.newregistr.ui.profile
 
 import android.content.Context
-import android.os.Message
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.testforme.newregistr.R
 import com.testforme.newregistr.objects.ErrorText
 import com.testforme.newregistr.stuff.application.SharedPrefHelper
-import java.lang.Error
 
 class ProfileViewModel() : ViewModel() {
     private lateinit var profileModel: ProfileModel
@@ -74,5 +72,7 @@ class ProfileViewModel() : ViewModel() {
    }
     var toast: LiveData<ErrorText> = _toast
 
-
+    fun startRegister() {
+        profileModel.startRegister()
+    }
 }

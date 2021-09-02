@@ -66,7 +66,7 @@ class AuthorizationController(profileViewModelA: ProfileViewModel) {
         return result
     }
 
-    private var onFinishedListener = object : OnFinishedListener {
+    private var onFinishedListener = object : OnRegFinishedListener {
         override fun onFinished(authResponse: AuthResponse) {
             //  mView?.hideProgressDialog()
 

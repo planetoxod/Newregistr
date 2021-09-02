@@ -10,10 +10,6 @@ import androidx.lifecycle.ViewModelProvider
 import com.testforme.newregistr.databinding.FragmentProfileBinding
 import com.testforme.newregistr.databinding.ProfileContentBinding
 import com.testforme.newregistr.objects.ErrorText
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 
 class ProfileFragment : Fragment(), ToastController {
 
@@ -82,7 +78,7 @@ class ProfileFragment : Fragment(), ToastController {
                     (phone as MutableLiveData).postValue(phoneView.text.toString())
                     (email as MutableLiveData).postValue(emailView.text.toString())
                     (birthday as MutableLiveData).postValue(birthdayView.text.toString())
-
+                    startRegister()
                 }
             }
         }
