@@ -223,7 +223,7 @@
         android:layout_height="52dp">
 
         <ImageButton
-            android:id="@+id/imageButton"
+            android:id="@+id/btnSave"
             android:layout_width="120dp"
             android:layout_height="52dp"
             android:layout_margin="8dp"
@@ -242,10 +242,10 @@
             android:text="@string/save"
             android:textColor="@color/white"
             android:textSize="20sp"
-            app:layout_constraintBottom_toBottomOf="@+id/imageButton"
-            app:layout_constraintEnd_toEndOf="@+id/imageButton"
-            app:layout_constraintStart_toStartOf="@+id/imageButton"
-            app:layout_constraintTop_toTopOf="@+id/imageButton" />
+            app:layout_constraintBottom_toBottomOf="@+id/btnSave"
+            app:layout_constraintEnd_toEndOf="@+id/btnSave"
+            app:layout_constraintStart_toStartOf="@+id/btnSave"
+            app:layout_constraintTop_toTopOf="@+id/btnSave" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 

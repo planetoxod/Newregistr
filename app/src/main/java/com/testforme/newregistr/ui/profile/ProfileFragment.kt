@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModelProvider
 import com.testforme.newregistr.databinding.FragmentProfileBinding
 import com.testforme.newregistr.databinding.ProfileContentBinding
@@ -30,14 +31,13 @@ class ProfileFragment : Fragment(), ToastController {
         savedInstanceState: Bundle?
     ): View {
 
-        profileModel=ProfileModel()
+        profileModel = ProfileModel()
 
         profileViewModel =
             ViewModelProvider(this).get(ProfileViewModel::class.java)
 
         profileModel.setViewModel(profileViewModel)
         profileViewModel.setModel(profileModel)
-        profileModel.authWithPass()
 
         activity?.let { profileViewModel.setSomethingWent(it.application) }
 
@@ -45,6 +45,7 @@ class ProfileFragment : Fragment(), ToastController {
         val root: View = binding.root
 
         val profileView: ProfileContentBinding = binding.profileView
+
         profileViewModel.name.observe(viewLifecycleOwner, {
             profileView.profileCard.nameView.setText(it)
         })
@@ -62,7 +63,7 @@ class ProfileFragment : Fragment(), ToastController {
         })
 
         profileViewModel.dtCreate.observe(viewLifecycleOwner, {
-            profileView.profileCard.regView.text=it
+            profileView.profileCard.regView.text = it
         })
 
         profileViewModel.enabled.observe(viewLifecycleOwner, {
@@ -73,7 +74,21 @@ class ProfileFragment : Fragment(), ToastController {
             showToast(it)
         })
 
-        profileView.scrollView.visibility=View.VISIBLE
+        profileView.profileCard.btnSave.setOnClickListener {
+            //update , registration profile
+            with(profileView.profileCard) {
+                with(profileViewModel) {
+                    (name as MutableLiveData).postValue(nameView.text.toString())
+                    (phone as MutableLiveData).postValue(phoneView.text.toString())
+                    (email as MutableLiveData).postValue(emailView.text.toString())
+                    (birthday as MutableLiveData).postValue(birthdayView.text.toString())
+
+                }
+            }
+        }
+
+
+        profileView.scrollView.visibility = View.VISIBLE
 
         return root
     }
