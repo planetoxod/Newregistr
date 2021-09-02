@@ -17,12 +17,11 @@ class AuthorizationController(profileViewModelA: ProfileViewModel) {
     private val profileViewModel=profileViewModelA
 
     fun authWithPass() {
-        val authApi = RetrofitApi.getInstance().create(AuthApi::class.java)
         val errorList = checkStrings(profileViewModel.user)
-
         if (profileViewModel.user != null && errorList.isEmpty()) {
             val loginBody = profileViewModel.user.let { LoginBody(it.id, it.phone) }
 
+            val authApi = RetrofitApi.getInstance().create(AuthApi::class.java)
             val authQuery = loginBody.let { authApi.authWithPass(it) }
 
             authQuery.enqueue(object : Callback<AuthResponse> {

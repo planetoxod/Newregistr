@@ -14,18 +14,26 @@ import com.testforme.newregistr.stuff.application.SharedPrefHelper
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import retrofit2.http.Header
+import kotlin.collections.MutableMap as MutableMap1
 
 class RegistrationController(profileViewModelA: ProfileViewModel) {
     private lateinit var userHelper: UserHelperImpl
     private val profileViewModel=profileViewModelA
 
     fun register() {
+        val errorList = checkStrings(profileViewModel.user)
         if (profileViewModel.user != null && errorList.isEmpty()) {
-            val loginBody = profileViewModel.user.let { LoginBody(it.id, it.phone) }
 
+            val loginBody = profileViewModel.user.let { LoginBody(it.id, it.phone) }
             val regApi = RetrofitApi.getInstance().create(RegistrationApi::class.java)
 
-            val regQuery = regApi.singUp(user)
+            val headers = HashMap<String, String>()
+            headers["Content-Type"] = "application/json"
+            val idDevice:Int=1001
+            headers["X-APP-ID"] = idDevice.toString()
+
+            val regQuery = regApi.singUp(headers,user)
             regQuery.enqueue(object : Callback<List<ResponseBody>> {
                 override fun onResponse(
                     call: Call<List<ResponseBody>>,
