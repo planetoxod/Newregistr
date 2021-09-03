@@ -32,9 +32,12 @@ enum class ErrorText {
 enum class ViewErrorCodes {
     NAME_IS_EMPTY,
     USER_IS_EMPTY,
-    LOGIN_IS_EMPTY,
+    UUID_IS_EMPTY,
     EMAIL_IS_EMPTY,
     EMAIL_NOT_VALID,
     PHONE_IS_EMPTY,
+    BIRTHDAY_IS_EMPTY,
+    AVATAR_IS_EMPTY,
     PHONE_TOO_SHORT
+
 }

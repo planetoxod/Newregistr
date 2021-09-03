@@ -78,7 +78,7 @@ class AuthorizationController(profileViewModelA: ProfileViewModel) {
         if (user == null) result.add(ViewErrorCodes.USER_IS_EMPTY)
         else {
             with(user) {
-                if (id.isBlank()) result.add(ViewErrorCodes.LOGIN_IS_EMPTY)
+                if (id.isBlank()) result.add(ViewErrorCodes.UUID_IS_EMPTY)
                 when (phone.length) {
                     0 -> result.add(ViewErrorCodes.PHONE_IS_EMPTY)
                     in (1..6) -> result.add(ViewErrorCodes.PHONE_TOO_SHORT)

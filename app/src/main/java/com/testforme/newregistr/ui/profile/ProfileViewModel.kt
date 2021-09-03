@@ -29,10 +29,10 @@ class ProfileViewModel() : ViewModel() {
     private fun changeField(){
         _name.value = user?.name ?: somethingWent
         _phone.value = user?.phone ?: somethingWent
-        _email.value = user?.phone ?: somethingWent
-        _birthday.value = user?.phone ?: somethingWent
-        _dtCreate.value = user?.phone ?: somethingWent
-        _enabled.value = user?.phone ?: somethingWent
+        _email.value = user?.email ?: somethingWent
+        _birthday.value = user?.birthday ?: somethingWent
+        _dtCreate.value = user?.dt_create ?: somethingWent
+        _enabled.value = user?.enabled ?: somethingWent
     }
 
     val user =  SharedPrefHelper.getInstance().getUserObject()
