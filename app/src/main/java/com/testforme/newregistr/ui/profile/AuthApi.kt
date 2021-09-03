@@ -9,11 +9,9 @@ import retrofit2.Call
 import retrofit2.http.*
 
 interface AuthApi {
-    @Headers("Content-Type: application/json")
-    @POST("signin")
-    fun authWithPass(@Body loginBody: LoginBody): Call<AuthResponse>
 
-//    @POST("auth.php?type=token")
-//    fun authWithToken(@Body loginBody: LoginBody): Call<AuthResponse>
+    @POST("signin")
+    fun authWithPass(@HeaderMap headers: Map<String, String>, @Body loginBody: LoginBody): Call<AuthResponse>
+
 }
 

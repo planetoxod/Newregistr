@@ -14,15 +14,24 @@ import com.testforme.newregistr.stuff.application.SharedPrefHelper
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import retrofit2.http.Header
-import kotlin.collections.MutableMap as MutableMap1
 
 class RegistrationController(profileViewModelA: ProfileViewModel) {
     private lateinit var userHelper: UserHelperImpl
     private val profileViewModel=profileViewModelA
 
     fun register() {
+      //  mView?.hideViewError()
+
+        if (errorList.isEmpty()) {
+            mView?.showProgressDialog()
+
+            user = ZygoteUser(name, login, email, password)
+
+            model.register(user, )
+        }
+
         val errorList = checkStrings(profileViewModel.user)
+     //   val errorList = checkStrings(name, login, email, password)
         if (profileViewModel.user != null && errorList.isEmpty()) {
 
             val loginBody = profileViewModel.user.let { LoginBody(it.id, it.phone) }
@@ -30,7 +39,7 @@ class RegistrationController(profileViewModelA: ProfileViewModel) {
 
             val headers = HashMap<String, String>()
             headers["Content-Type"] = "application/json"
-            val idDevice:Int=1001
+            val idDevice:Long=System.currentTimeMillis()
             headers["X-APP-ID"] = idDevice.toString()
 
             val regQuery = regApi.singUp(headers,user)
@@ -39,49 +48,35 @@ class RegistrationController(profileViewModelA: ProfileViewModel) {
                     call: Call<List<ResponseBody>>,
                     response: Response<List<ResponseBody>>
                 ) {
-                    if (response.body() != null)
-                        onFinishedListener.onFinished(response.body()!!)
+                    if (response.body() != null){
+                        response.body()!!.forEach {
+                            when (it.code) {
+                                ResponseCodes.EMAIL_ERROR -> {}//mView?.setServerError(it.code)
+
+                                ResponseCodes.LOGIN_ERROR ->{
+                                    // mView?.setServerError(it.code)
+                                    // mView?.auth()
+                                }
+
+                                ResponseCodes.SUCCESS ->{} //mView?.auth()
+                            }
+                        }
+                        //  mView?.hideProgressDialog()
+                    }
+
                 }
 
                 override fun onFailure(call: Call<List<ResponseBody>>, t: Throwable) {
-                    onFinishedListener.onFailure(t)
+                    //  mView?.setUserData(zygoteUser)
                 }
             })
+        } else {
+          //  mView?.setViewError(errorList)
         }
+
     }
 
     private lateinit var user: ZygoteUser
-
-    private val onFinishedListener2 = object : OnFinishedListener2 {
-        override fun onFinished(responseList: List<ResponseBody>) {
-            responseList.forEach {
-                when (it.code) {
-                    ResponseCodes.EMAIL_ERROR -> mView?.setServerError(it.code)
-
-                    ResponseCodes.LOGIN_ERROR ->{
-                        mView?.setServerError(it.code)
-                        mView?.auth()
-                    }
-
-                    ResponseCodes.SUCCESS -> mView?.auth()
-                }
-            }
-            mView?.hideProgressDialog()
-        }
-
-        override fun onFinished(zygoteUser: ZygoteUser) {
-            mView?.setUserData(zygoteUser)
-        }
-
-        override fun onFinished() {
-
-        }
-
-        override fun onFailure(t: Throwable) {
-            mView?.hideProgressDialog()
-            mView?.showToast(t.localizedMessage ?: "UnhandledError", false)
-        }
-    }
 
     override fun register(name: String, login: String, email: String, password: String) {
         mView?.hideViewError()
@@ -147,89 +142,6 @@ class RegistrationController(profileViewModelA: ProfileViewModel) {
             result.add(ViewErrorCodes.PASSWORD_TOO_SHORT)
 
         return result
-    }
-
-    fun authWithPass() {
-        val authApi = RetrofitApi.getInstance().create(AuthApi::class.java)
-        val errorList = checkStrings(profileViewModel.user)
-
-        if (profileViewModel.user != null && errorList.isEmpty()) {
-            val loginBody = profileViewModel.user.let { LoginBody(it.id, it.phone) }
-
-            val authQuery = loginBody.let { authApi.authWithPass(it) }
-
-            authQuery.enqueue(object : Callback<AuthResponse> {
-                override fun onResponse(
-                    call: Call<AuthResponse>,
-                    response: Response<AuthResponse>
-                ) {
-                    response.body()?.let { body ->
-                        onFinishedListener.onFinished(body)
-
-                    } ?: onFinishedListener.onFinished()
-                }
-
-                override fun onFailure(call: Call<AuthResponse>, t: Throwable) {
-                    onFinishedListener.onFailure(t)
-                }
-            })
-        } else {
-//        mView?.setViewError(errorList)
-        }
-    }
-
-
-    private fun checkStrings(user: User?): List<ViewErrorCodes> {
-        val result = arrayListOf<ViewErrorCodes>()
-
-        if (user == null) result.add(ViewErrorCodes.USER_IS_EMPTY)
-        else {
-            with(user) {
-                if (id.isBlank()) result.add(ViewErrorCodes.LOGIN_IS_EMPTY)
-                when (phone.length) {
-                    0 -> result.add(ViewErrorCodes.PHONE_IS_EMPTY)
-                    in (1..6) -> result.add(ViewErrorCodes.PHONE_TOO_SHORT)
-                    else -> {
-                    }
-                }
-
-            }
-        }
-
-        return result
-    }
-
-    private var onFinishedListener = object : OnRegFinishedListener {
-        override fun onFinished(authResponse: AuthResponse) {
-            //  mView?.hideProgressDialog()
-
-            if (authResponse.token != "") {
-                val user = userHelper.user
-                if (user != null) {
-                    user.token = authResponse.token
-                    user.let {
-                        SharedPrefHelper.getInstance()
-                            .writePreferences("user", Gson().toJson(it, User::class.java))
-                        userHelper.user = it
-                        profileViewModel.showToast(ErrorText.Success)
-                        //  mView?.closeView()
-                    }
-                }
-
-            } else profileViewModel.showToast(ErrorText.UnhandledError)
-
-        }
-
-        override fun onFinished() {
-//                mView?.hideProgressDialog()
-//                mView?.showToast(ErrorText.UnhandledError)
-        }
-
-        override fun onFailure(t: Throwable) {
-//            mView?.hideProgressDialog()
-//                mView?.showToast(ErrorText.LoadingError)
-        }
-
     }
 
 }

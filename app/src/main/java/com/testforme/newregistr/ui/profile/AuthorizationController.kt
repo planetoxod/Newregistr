@@ -4,6 +4,7 @@ import com.google.gson.Gson
 import com.testforme.newregistr.objects.ErrorText
 import com.testforme.newregistr.objects.User
 import com.testforme.newregistr.objects.ViewErrorCodes
+import com.testforme.newregistr.retrofit.AuthResponse
 import com.testforme.newregistr.retrofit.LoginBody
 import com.testforme.newregistr.retrofit.RetrofitApi
 import com.testforme.newregistr.stuff.UserHelperImpl
@@ -22,21 +23,47 @@ class AuthorizationController(profileViewModelA: ProfileViewModel) {
             val loginBody = profileViewModel.user.let { LoginBody(it.id, it.phone) }
 
             val authApi = RetrofitApi.getInstance().create(AuthApi::class.java)
-            val authQuery = loginBody.let { authApi.authWithPass(it) }
+
+            val headers = HashMap<String, String>()
+            headers["Content-Type"] = "application/json"
+            val idDevice:Long=System.currentTimeMillis()
+            headers["X-APP-ID"] = idDevice.toString()
+
+            val authQuery = authApi.authWithPass(headers,loginBody)
 
             authQuery.enqueue(object : Callback<AuthResponse> {
                 override fun onResponse(
                     call: Call<AuthResponse>,
                     response: Response<AuthResponse>
                 ) {
-                    response.body()?.let { body ->
-                        onFinishedListener.onFinished(body)
+                    response.body()?.let { it ->
+                        //  mView?.hideProgressDialog()
 
-                    } ?: onFinishedListener.onFinished()
+                        if (it.token != "") {
+                            val user = userHelper.user
+                            if (user != null) {
+                                user.token = it.token
+                                user.let {
+                                    SharedPrefHelper.getInstance()
+                                        .writePreferences("user", Gson().toJson(it, User::class.java))
+                                    userHelper.user = it
+                                    profileViewModel.showToast(ErrorText.Success)
+                                    //  mView?.closeView()
+                                }
+                            }
+
+                        } else profileViewModel.showToast(ErrorText.UnhandledError)
+
+                    } ?: run {
+                        //                mView?.hideProgressDialog()
+//                mView?.showToast(ErrorText.UnhandledError)
+
+                    }
                 }
 
                 override fun onFailure(call: Call<AuthResponse>, t: Throwable) {
-                    onFinishedListener.onFailure(t)
+                    //            mView?.hideProgressDialog()
+//                mView?.showToast(ErrorText.LoadingError)
                 }
             })
         } else {
@@ -63,39 +90,6 @@ class AuthorizationController(profileViewModelA: ProfileViewModel) {
         }
 
         return result
-    }
-
-    private var onFinishedListener = object : OnRegFinishedListener {
-        override fun onFinished(authResponse: AuthResponse) {
-            //  mView?.hideProgressDialog()
-
-            if (authResponse.token != "") {
-                val user = userHelper.user
-                if (user != null) {
-                    user.token = authResponse.token
-                    user.let {
-                        SharedPrefHelper.getInstance()
-                            .writePreferences("user", Gson().toJson(it, User::class.java))
-                        userHelper.user = it
-                        profileViewModel.showToast(ErrorText.Success)
-                        //  mView?.closeView()
-                    }
-                }
-
-            } else profileViewModel.showToast(ErrorText.UnhandledError)
-
-        }
-
-        override fun onFinished() {
-//                mView?.hideProgressDialog()
-//                mView?.showToast(ErrorText.UnhandledError)
-        }
-
-        override fun onFailure(t: Throwable) {
-//            mView?.hideProgressDialog()
-//                mView?.showToast(ErrorText.LoadingError)
-        }
-
     }
 
 }
