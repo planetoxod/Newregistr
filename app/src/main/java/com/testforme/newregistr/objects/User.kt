@@ -16,8 +16,8 @@ data class User(
     var email: String,
     @SerializedName("birthday")
     var birthday: String,
-    @SerializedName("avatar")
-    var avatar: String,
+    @SerializedName("avatarURL")
+    var avatarURL: String,
     @SerializedName("dt_create")
     var dt_create: String,
     @SerializedName("enabled")
@@ -32,7 +32,7 @@ data class User(
         userOld.name,
         userOld.email,
         userOld.birthday,
-        userOld.avatar,
+        userOld.avatarURL,
         userOld.dt_create,
         userOld.enabled,
         userOld.token

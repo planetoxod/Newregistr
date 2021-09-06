@@ -1,5 +1,8 @@
 package com.testforme.newregistr.ui.profile
 
+import com.testforme.newregistr.retrofit.RegResponseBody
+import com.testforme.newregistr.ui.profile.ProfileViewModel
+import com.testforme.newregistr.ui.profile.RegistrationApi
 import com.google.gson.Gson
 import com.testforme.newregistr.objects.ErrorText
 import com.testforme.newregistr.objects.User
@@ -28,10 +31,10 @@ class RegistrationController(profileViewModelA: ProfileViewModel) {
 
                 //  mView?.showProgressDialog()
 
-                zygoteUser = ZygoteUser(
+                val zygoteUser = ZygoteUser(
                     profileViewModel.user.phone, profileViewModel.user.name,
                     profileViewModel.user.email, profileViewModel.user.birthday,
-                    profileViewModel.user.avatar
+                    profileViewModel.user.avatarURL
                 )
 
                 val regApi = RetrofitApi.getInstance().create(RegistrationApi::class.java)
@@ -42,32 +45,27 @@ class RegistrationController(profileViewModelA: ProfileViewModel) {
                 headers["X-APP-ID"] = idDevice.toString()
 
                 val regQuery = regApi.singUp(headers, zygoteUser)
-                regQuery.enqueue(object : Callback<List<ResponseBody>> {
+                regQuery.enqueue(object : Callback<RegResponseBody> {
                     override fun onResponse(
-                        call: Call<List<ResponseBody>>,
-                        response: Response<List<ResponseBody>>
+                        call: Call<RegResponseBody>,
+                        response: Response<RegResponseBody>
                     ) {
                         if (response.body() != null) {
-                            response.body()!!.forEach {
-                                when (it.code) {
-                                    ResponseCodes.EMAIL_ERROR -> {
-                                    }//mView?.setServerError(it.code)
 
-                                    ResponseCodes.LOGIN_ERROR -> {
-                                        // mView?.setServerError(it.code)
-                                        // mView?.auth()
-                                    }
+                            with(response.body()) {
 
-                                    ResponseCodes.SUCCESS -> {
-                                    } //mView?.auth()
+                                if (this?.id =="") {
+                                    //mView?.setServerError(it.code)
+                                }else{
+                                     //mView?.auth()
                                 }
-                            }
-                            //  mView?.hideProgressDialog()
-                        }
 
+                                //  mView?.hideProgressDialog()
+                            }
+                        }
                     }
 
-                    override fun onFailure(call: Call<List<ResponseBody>>, t: Throwable) {
+                    override fun onFailure(call: Call<RegResponseBody>, t: Throwable) {
                         //  mView?.setUserData(zygoteUser)
                     }
                 })
@@ -79,54 +77,6 @@ class RegistrationController(profileViewModelA: ProfileViewModel) {
             errorList.add(ViewErrorCodes.USER_IS_EMPTY)
             //  mView?.setViewError(errorList)
         }
-    }
-
-    private lateinit var zygoteUser: ZygoteUser
-
-    override fun register(name: String, login: String, email: String, password: String) {
-        mView?.hideViewError()
-
-        val errorList = checkStrings(name, login, email, password)
-        if (errorList.isEmpty()) {
-            mView?.showProgressDialog()
-
-            zygoteUser = ZygoteUser(name, login, email, password)
-
-            model.register(zygoteUser)
-        } else {
-            mView?.setViewError(errorList)
-        }
-    }
-
-    override fun auth(userHelperImpl: UserHelperImpl) {
-        mView?.showProgressDialog()
-        AuthModel().authWithPass(object : AuthContract.Model.OnFinishedListener {
-            override fun onFinished(type: AuthResponseType, user: User?, message: String) {
-                mView?.hideProgressDialog()
-                when (type) {
-                    AuthResponseType.Success -> {
-                        user?.let {
-                            SharedPrefHelper.getInstance()
-                                .writePreferences("user", Gson().toJson(it, User::class.java))
-                            userHelperImpl.user = it
-                        }
-                        mView?.closeView()
-                    }
-                    AuthResponseType.AuthError -> mView?.showToast(message)
-                    AuthResponseType.TokenError -> mView?.showToast(ErrorText.UnhandledError)
-                }
-            }
-
-            override fun onFinished() {
-                mView?.hideProgressDialog()
-                mView?.showToast(ErrorText.UnhandledError)
-            }
-
-            override fun onFailure(t: Throwable) {
-                mView?.hideProgressDialog()
-                mView?.showToast(ErrorText.LoadingError)
-            }
-        }, zygoteUser.email!!, zygoteUser.password!!)
     }
 
     private fun checkStrings(user: User): List<ViewErrorCodes> {
@@ -142,7 +92,7 @@ class RegistrationController(profileViewModelA: ProfileViewModel) {
             if (user.name.isBlank()) result.add(ViewErrorCodes.NAME_IS_EMPTY)
             if (user.email.isBlank()) result.add(ViewErrorCodes.EMAIL_IS_EMPTY)
             if (user.birthday.isBlank()) result.add(ViewErrorCodes.BIRTHDAY_IS_EMPTY)
-            if (user.avatar.isBlank()) result.add(ViewErrorCodes.AVATAR_IS_EMPTY)
+            if (user.avatarURL.isBlank()) result.add(ViewErrorCodes.AVATAR_IS_EMPTY)
         }
 
         return result

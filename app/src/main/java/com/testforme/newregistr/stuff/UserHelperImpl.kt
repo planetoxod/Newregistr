@@ -21,7 +21,7 @@ class UserHelperImpl : UserObservableImpl() {
         this.user?.let {thisUser ->
             thisUser.id = user.id
             thisUser.birthday = user.birthday
-            thisUser.avatar = user.avatar
+            thisUser.avatarURL = user.avatarURL
             thisUser.name = user.name
             thisUser.dt_create = user.dt_create
             thisUser.email = user.email

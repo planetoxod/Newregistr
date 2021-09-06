@@ -9,6 +9,7 @@ class ProfileModel {
         profileViewModel = viewModel
         authorizationController= AuthorizationController(profileViewModel)
         registrationController= RegistrationController(profileViewModel)
+        authWithPass()
     }
 
     fun startRegister() {
@@ -24,7 +25,4 @@ class ProfileModel {
         }
     }
 
-    init {
-        authWithPass()
-    }
 }

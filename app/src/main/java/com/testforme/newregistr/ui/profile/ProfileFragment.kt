@@ -1,21 +1,35 @@
 package com.testforme.newregistr.ui.profile
 
+import android.Manifest
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import android.provider.Settings
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModelProvider
+import com.testforme.newregistr.R
 import com.testforme.newregistr.databinding.FragmentProfileBinding
 import com.testforme.newregistr.databinding.ProfileContentBinding
 import com.testforme.newregistr.objects.ErrorText
+import androidx.core.app.ActivityCompat
+import android.content.pm.PackageManager
+import androidx.core.content.ContextCompat
+import androidx.annotation.NonNull
 
-class ProfileFragment : Fragment(), ToastController {
+class ProfileFragment : Fragment(), ToastController, View.OnClickListener {
+
+    companion object {
+        private const val REQUEST_CODE_PERMISSION_READ_CONTACTS = 1234
+    }
 
     private lateinit var profileViewModel: ProfileViewModel
     private lateinit var profileModel: ProfileModel
     private var _binding: FragmentProfileBinding? = null
+    private lateinit var profileView: ProfileContentBinding
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -70,21 +84,11 @@ class ProfileFragment : Fragment(), ToastController {
             showToast(it)
         })
 
-        profileView.profileCard.btnSave.setOnClickListener {
-            //update , registration profile
-            with(profileView.profileCard) {
-                with(profileViewModel) {
-                    (name as MutableLiveData).postValue(nameView.text.toString())
-                    (phone as MutableLiveData).postValue(phoneView.text.toString())
-                    (email as MutableLiveData).postValue(emailView.text.toString())
-                    (birthday as MutableLiveData).postValue(birthdayView.text.toString())
-                    startRegister()
-                }
-            }
-        }
-
-
         profileView.scrollView.visibility = View.VISIBLE
+
+        profileView.profileCard.btnSave.setOnClickListener(this)
+        profileView.btnPhoto.setOnClickListener(this)
+        profileView.btnLogout.setOnClickListener(this)
 
         return root
     }
@@ -112,6 +116,98 @@ class ProfileFragment : Fragment(), ToastController {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    override fun onClick(p0: View?) {
+        if (p0 != null) {
+            when (p0.id) {
+                R.id.btnSave -> {         //update , registration profile
+                    with(profileView.profileCard) {
+                        with(profileViewModel) {
+                            (name as MutableLiveData).postValue(nameView.text.toString())
+                            (phone as MutableLiveData).postValue(phoneView.text.toString())
+                            (email as MutableLiveData).postValue(emailView.text.toString())
+                            (birthday as MutableLiveData).postValue(birthdayView.text.toString())
+                            startRegister()
+                        }
+                    }
+                }
+                R.id.btnPhoto -> {
+                    val permissionStatus =
+                        ContextCompat.checkSelfPermission(
+                            this.requireContext(),
+                            Manifest.permission.READ_CONTACTS
+                        )
+
+                    if (permissionStatus == PackageManager.PERMISSION_GRANTED) {
+                        // readContacts()
+                    } else {
+                        ActivityCompat.requestPermissions(
+                            this.requireActivity(), arrayOf(Manifest.permission.READ_CONTACTS),
+                            REQUEST_CODE_PERMISSION_READ_CONTACTS
+                        )
+                    }
+                }
+                    askPermission(this,
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                    Manifest.permission.READ_EXTERNAL_STORAGE,
+                    Manifest.permission.CAMERA)
+
+//                    .ask(object : PermissionListener {
+//                        override fun onAccepted(permissionResult: PermissionResult, accepted: List<String>) {
+//                            //all permissions already granted or just granted
+//                            //
+//                            imagePicker.show(childFragmentManager, null)
+//
+//                        }
+//
+//                        override fun onDenied(permissionResult: PermissionResult, denied: List<String>, foreverDenied: List<String>) {
+//                            if (permSnackbar == null) {
+//                                permSnackbar = CafeBar.builder(context!!)
+//                                    .duration(CafeBar.Duration.MEDIUM)
+//                                    .content(R.string.permission_request)
+//                                    .positiveText(R.string.open_settings)
+//                                    .positiveColor(android.R.color.white)
+//                                    .onPositive {
+//                                        val intent = Intent()
+//                                        intent.action = Settings.ACTION_APPLICATION_DETAILS_SETTINGS
+//                                        val uri = Uri.fromParts("package", activity!!.packageName, null)
+//                                        intent.data = uri
+//                                        startActivity(intent)
+//                                        it.dismiss()
+//                                    }
+//                                    .negativeText(R.string.ok)
+//                                    .onNegative{ cafeBar -> cafeBar.dismiss() }
+//                                    .fitSystemWindow()
+//                                    .floating(true)
+//                                    .build()
+//                            }
+//
+//                            permSnackbar?.show()
+//                        }
+//                    })
+            }
+        }
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<String?>,
+        grantResults: IntArray
+    ) {
+        when (requestCode) {
+            REQUEST_CODE_PERMISSION_READ_CONTACTS -> {
+                if (grantResults.isNotEmpty()
+                    && grantResults[0] == PackageManager.PERMISSION_GRANTED
+                ) {
+                    // permission granted
+                    // readContacts()
+                } else {
+                    // permission denied
+                }
+                return
+            }
+        }
     }
 
 }

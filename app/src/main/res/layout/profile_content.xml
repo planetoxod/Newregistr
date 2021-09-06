@@ -48,6 +48,7 @@
             android:layout_height="150dp"
             android:elevation="10dp"
 
+            android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="@+id/margin"
             app:layout_constraintEnd_toEndOf="@+id/background"
             app:layout_constraintStart_toStartOf="@+id/background"
@@ -58,28 +59,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:adjustViewBounds="true"
+                android:background="@color/result_neutral"
                 android:scaleType="centerCrop"
-                tools:srcCompat="@tools:sample/avatars"
-                tools:ignore="ContentDescription" />
+                android:visibility="visible"
+                tools:ignore="ContentDescription"
+                tools:srcCompat="@tools:sample/avatars" />
 
         </LinearLayout>
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/btnPhoto"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/ic_menu_camera"
-
-            android:backgroundTint="@color/result_neutral"
-            android:clickable="true"
-            android:focusable="true"
-            app:elevation="10dp"
-            app:layout_constraintBottom_toBottomOf="@+id/iconLayout"
-            app:layout_constraintEnd_toStartOf="@+id/iconLayout"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/iconLayout"
-            app:srcCompat="@drawable/ic_menu_camera"
-            tools:ignore="ContentDescription" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/btnLogout"
@@ -96,6 +82,23 @@
             app:layout_constraintStart_toEndOf="@+id/iconLayout"
             app:layout_constraintTop_toTopOf="@+id/iconLayout"
             app:srcCompat="@drawable/ic_exit_to_app_black_24dp"
+            tools:ignore="ContentDescription" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/btnPhoto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_menu_camera"
+
+            android:backgroundTint="@color/result_neutral"
+            android:clickable="true"
+            android:focusable="true"
+            app:elevation="10dp"
+            app:layout_constraintBottom_toBottomOf="@+id/iconLayout"
+            app:layout_constraintEnd_toStartOf="@+id/iconLayout"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/iconLayout"
+            app:srcCompat="@drawable/ic_menu_camera"
             tools:ignore="ContentDescription" />
 
         <include
