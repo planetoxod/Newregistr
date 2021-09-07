@@ -92,7 +92,7 @@ class RegistrationController(profileViewModelA: ProfileViewModel) {
             if (user.name.isBlank()) result.add(ViewErrorCodes.NAME_IS_EMPTY)
             if (user.email.isBlank()) result.add(ViewErrorCodes.EMAIL_IS_EMPTY)
             if (user.birthday.isBlank()) result.add(ViewErrorCodes.BIRTHDAY_IS_EMPTY)
-            if (user.avatarURL.isBlank()) result.add(ViewErrorCodes.AVATAR_IS_EMPTY)
+
         }
 
         return result

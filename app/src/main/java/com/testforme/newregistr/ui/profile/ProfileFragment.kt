@@ -1,6 +1,7 @@
 package com.testforme.newregistr.ui.profile
 
 import android.Manifest
+import android.app.Activity
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -21,11 +22,11 @@ import androidx.core.content.ContextCompat
 import androidx.annotation.NonNull
 
 class ProfileFragment : Fragment(), ToastController, View.OnClickListener {
-
     companion object {
-        private const val REQUEST_CODE_PERMISSION_READ_CONTACTS = 1234
+        private const val REQUEST_CODE_PERMISSION = 1234
     }
 
+    private lateinit var permissionController: PermissionController
     private lateinit var profileViewModel: ProfileViewModel
     private lateinit var profileModel: ProfileModel
     private var _binding: FragmentProfileBinding? = null
@@ -40,6 +41,7 @@ class ProfileFragment : Fragment(), ToastController, View.OnClickListener {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        permissionController = PermissionController()
 
         profileModel = ProfileModel()
 
@@ -118,6 +120,13 @@ class ProfileFragment : Fragment(), ToastController, View.OnClickListener {
         _binding = null
     }
 
+    private val responseCallback = object :PermissionController.ResponseCallback {
+        override fun onResponseCallback() {
+           // imagePicker.show(childFragmentManager, null)
+            super.onResponseCallback()
+        }
+    }
+
     override fun onClick(p0: View?) {
         if (p0 != null) {
             when (p0.id) {
@@ -133,25 +142,22 @@ class ProfileFragment : Fragment(), ToastController, View.OnClickListener {
                     }
                 }
                 R.id.btnPhoto -> {
-                    val permissionStatus =
-                        ContextCompat.checkSelfPermission(
-                            this.requireContext(),
-                            Manifest.permission.READ_CONTACTS
-                        )
-
-                    if (permissionStatus == PackageManager.PERMISSION_GRANTED) {
-                        // readContacts()
-                    } else {
-                        ActivityCompat.requestPermissions(
-                            this.requireActivity(), arrayOf(Manifest.permission.READ_CONTACTS),
-                            REQUEST_CODE_PERMISSION_READ_CONTACTS
+                    activity?.let {
+                        permissionController.ask(
+                            it,
+                            arrayOf(
+                                Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                                Manifest.permission.READ_EXTERNAL_STORAGE,
+                                Manifest.permission.CAMERA
+                            ),
+                            responseCallback
                         )
                     }
-                }
-                    askPermission(this,
-                    Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                    Manifest.permission.READ_EXTERNAL_STORAGE,
-                    Manifest.permission.CAMERA)
+
+//                    askPermission(this,
+//                    Manifest.permission.WRITE_EXTERNAL_STORAGE,
+//                    Manifest.permission.READ_EXTERNAL_STORAGE,
+//                    Manifest.permission.CAMERA)
 
 //                    .ask(object : PermissionListener {
 //                        override fun onAccepted(permissionResult: PermissionResult, accepted: List<String>) {
@@ -186,6 +192,7 @@ class ProfileFragment : Fragment(), ToastController, View.OnClickListener {
 //                            permSnackbar?.show()
 //                        }
 //                    })
+                }
             }
         }
     }
@@ -196,12 +203,12 @@ class ProfileFragment : Fragment(), ToastController, View.OnClickListener {
         grantResults: IntArray
     ) {
         when (requestCode) {
-            REQUEST_CODE_PERMISSION_READ_CONTACTS -> {
+            REQUEST_CODE_PERMISSION -> {
                 if (grantResults.isNotEmpty()
                     && grantResults[0] == PackageManager.PERMISSION_GRANTED
                 ) {
                     // permission granted
-                    // readContacts()
+                    responseCallback.onResponseCallback()
                 } else {
                     // permission denied
                 }
