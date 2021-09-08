@@ -26,15 +26,15 @@ class RegistrationController(profileViewModelA: ProfileViewModel) {
         //  mView?.hideViewError()
 
         if (profileViewModel.user != null ) {
-            val errorList = checkStrings(profileViewModel.user)
+            val errorList = checkStrings(profileViewModel.user!!)
             if (errorList.isEmpty()) {
 
                 //  mView?.showProgressDialog()
 
                 val zygoteUser = ZygoteUser(
-                    profileViewModel.user.phone, profileViewModel.user.name,
-                    profileViewModel.user.email, profileViewModel.user.birthday,
-                    profileViewModel.user.avatarURL
+                    profileViewModel.user!!.phone, profileViewModel.user!!.name,
+                    profileViewModel.user!!.email, profileViewModel.user!!.birthday,
+                    profileViewModel.user!!.avatarURL
                 )
 
                 val regApi = RetrofitApi.getInstance().create(RegistrationApi::class.java)

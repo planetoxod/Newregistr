@@ -18,8 +18,12 @@ import com.testforme.newregistr.databinding.ProfileContentBinding
 import com.testforme.newregistr.objects.ErrorText
 import androidx.core.app.ActivityCompat
 import android.content.pm.PackageManager
+import android.view.inputmethod.InputMethodManager
 import androidx.core.content.ContextCompat
 import androidx.annotation.NonNull
+import com.google.gson.Gson
+import com.testforme.newregistr.objects.User
+import com.testforme.newregistr.stuff.application.SharedPrefHelper
 
 class ProfileFragment : Fragment(), ToastController, View.OnClickListener {
     companion object {
@@ -56,7 +60,7 @@ class ProfileFragment : Fragment(), ToastController, View.OnClickListener {
         _binding = FragmentProfileBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val profileView: ProfileContentBinding = binding.profileView
+        profileView = binding.profileView
 
         profileViewModel.name.observe(viewLifecycleOwner, {
             profileView.profileCard.nameView.setText(it)
@@ -133,10 +137,18 @@ class ProfileFragment : Fragment(), ToastController, View.OnClickListener {
                 R.id.btnSave -> {         //update , registration profile
                     with(profileView.profileCard) {
                         with(profileViewModel) {
-                            (name as MutableLiveData).postValue(nameView.text.toString())
-                            (phone as MutableLiveData).postValue(phoneView.text.toString())
-                            (email as MutableLiveData).postValue(emailView.text.toString())
-                            (birthday as MutableLiveData).postValue(birthdayView.text.toString())
+                            profileViewModel.apply {
+                                user = User("000",phoneView.text.toString(),
+                                    nameView.text.toString(),emailView.text.toString(),
+                                    birthdayView.text.toString(),user!!.avatarURL ,
+                                    "","","")
+                                user?.let {
+                                    SharedPrefHelper.getInstance().writePreferences("user", Gson().toJson(it, User::class.java))
+                                }
+                            }
+                            val imm: InputMethodManager =
+                                requireContext().getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+                            imm.hideSoftInputFromWindow(requireView().windowToken, 0)
                             startRegister()
                         }
                     }
@@ -154,44 +166,6 @@ class ProfileFragment : Fragment(), ToastController, View.OnClickListener {
                         )
                     }
 
-//                    askPermission(this,
-//                    Manifest.permission.WRITE_EXTERNAL_STORAGE,
-//                    Manifest.permission.READ_EXTERNAL_STORAGE,
-//                    Manifest.permission.CAMERA)
-
-//                    .ask(object : PermissionListener {
-//                        override fun onAccepted(permissionResult: PermissionResult, accepted: List<String>) {
-//                            //all permissions already granted or just granted
-//                            //
-//                            imagePicker.show(childFragmentManager, null)
-//
-//                        }
-//
-//                        override fun onDenied(permissionResult: PermissionResult, denied: List<String>, foreverDenied: List<String>) {
-//                            if (permSnackbar == null) {
-//                                permSnackbar = CafeBar.builder(context!!)
-//                                    .duration(CafeBar.Duration.MEDIUM)
-//                                    .content(R.string.permission_request)
-//                                    .positiveText(R.string.open_settings)
-//                                    .positiveColor(android.R.color.white)
-//                                    .onPositive {
-//                                        val intent = Intent()
-//                                        intent.action = Settings.ACTION_APPLICATION_DETAILS_SETTINGS
-//                                        val uri = Uri.fromParts("package", activity!!.packageName, null)
-//                                        intent.data = uri
-//                                        startActivity(intent)
-//                                        it.dismiss()
-//                                    }
-//                                    .negativeText(R.string.ok)
-//                                    .onNegative{ cafeBar -> cafeBar.dismiss() }
-//                                    .fitSystemWindow()
-//                                    .floating(true)
-//                                    .build()
-//                            }
-//
-//                            permSnackbar?.show()
-//                        }
-//                    })
                 }
             }
         }

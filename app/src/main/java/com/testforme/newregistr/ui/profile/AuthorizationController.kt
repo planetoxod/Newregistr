@@ -20,7 +20,7 @@ class AuthorizationController(profileViewModelA: ProfileViewModel) {
     fun authWithPass() {
         val errorList = checkStrings(profileViewModel.user)
         if (profileViewModel.user != null && errorList.isEmpty()) {
-            val loginBody = profileViewModel.user.let { LoginBody(it.id, it.phone) }
+            val loginBody = profileViewModel.user.let { LoginBody(it!!.id, it.phone) }
 
             val authApi = RetrofitApi.getInstance().create(AuthApi::class.java)
 

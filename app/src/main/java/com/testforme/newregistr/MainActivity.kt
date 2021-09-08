@@ -19,48 +19,8 @@ import com.testforme.newregistr.stuff.application.SharedPrefHelper
 class MainActivity : AppCompatActivity() {
     companion object {
 
-
-        const val RC_SIGN_IN=123
-
-//        val TAGMainCatalog = CatalogFragment::class.java.canonicalName!!
-//        val TAGMainTrainingMaps = TrainingMapsFragment::class.java.canonicalName!!
-//        val TAGMainAllCategoryOfTests = AllCategoryOfTestsFragment::class.java.canonicalName!!
-//        val TAGMainTrafficRulesTests = TrafficRulesTestsFragment::class.java.canonicalName!!
-//        val TAGMainRoadSigns = RoadSignsFragment::class.java.canonicalName!!
-//        val TAGMainExams = ExamsFragment::class.java.canonicalName!!
-//
-//        val TAGMainStatsTickets = StatTicketsFragment::class.java.canonicalName!!
-//        val TAGMainFavouritesTickets = FavouritesTicketsFragment::class.java.canonicalName!!
-//        val TAGMainFavouritesSigns = FavouritesSignsFragment::class.java.canonicalName!!
-//        val TAGFavouritesTraining = FavouritesTrainingFragment::class.java.canonicalName!!
-//        val TAGMainStatsExams = StatExamsFragment::class.java.canonicalName!!
-//        val TAGMainStatsSigns = StatSignsFragment::class.java.canonicalName!!
-//        val TAGMainStatsTraining = StatTrainingFragment::class.java.canonicalName!!
-//        val TAGMainProfile = ProfileFragment::class.java.canonicalName!!
-//        val TAGMainActivity = MainActivity::class.java.canonicalName
-
-        const val COMMAND_MAINACTIVITY = "Comand_MainActivity"
-        const val ACTION_UPDATE_FRAGMENT = "ACTION_UPDATE_FRAGMENT"
-        const val ACTION_UPDATE_ALL_FRAGMENTS = "ACTION_UPDATE_ALL_FRAGMENTS"
-        const val ACTION_SHOW_STAT = "ACTION_SHOW_STAT"
-        const val STAT_TESTS = 1
-        const val STAT_EXAMS = 2
-        const val STAT_SIGNS = 3
-        const val STAT_TRAINING = 4
-
-        const val SUBCATALOG_TESTS = 0
-        const val SUBCATALOG_SIGNS = 1
-        const val SUBCATALOG_TRAININGMAPS = 2
-
         const val MAIN_SITE_URL = "https://netoct.ru"
 
-        fun getColorWrapper(context: Context, id: Int): Int {
-            return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                context.getColor(id)
-            } else {
-                context.resources.getColor(id)
-            }
-        }
     }
 
     private lateinit var appBarConfiguration: AppBarConfiguration

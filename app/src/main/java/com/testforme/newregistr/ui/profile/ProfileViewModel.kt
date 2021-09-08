@@ -4,8 +4,10 @@ import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.google.gson.Gson
 import com.testforme.newregistr.R
 import com.testforme.newregistr.objects.ErrorText
+import com.testforme.newregistr.objects.User
 import com.testforme.newregistr.stuff.application.SharedPrefHelper
 
 class ProfileViewModel() : ViewModel() {
@@ -35,7 +37,7 @@ class ProfileViewModel() : ViewModel() {
         _enabled.value = user?.enabled ?: somethingWent
     }
 
-    val user =  SharedPrefHelper.getInstance().getUserObject()
+    var user =  SharedPrefHelper.getInstance().getUserObject()
 
     private val _name = MutableLiveData<String>().apply {
         value = user?.name ?: somethingWent
@@ -56,6 +58,12 @@ class ProfileViewModel() : ViewModel() {
         value = user?.birthday ?: somethingWent
     }
     val birthday: LiveData<String> = _birthday
+
+    private val _avatar = MutableLiveData<String>().apply {
+        value = user?.avatarURL ?: somethingWent
+    }
+
+    val avatar: LiveData<String> = _avatar
 
     private val _dtCreate = MutableLiveData<String>().apply {
         value = user?.dt_create ?: somethingWent
