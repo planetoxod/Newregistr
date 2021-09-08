@@ -2,6 +2,7 @@ package com.testforme.newregistr.ui.profile
 
 import android.Manifest
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -18,12 +19,21 @@ import com.testforme.newregistr.databinding.ProfileContentBinding
 import com.testforme.newregistr.objects.ErrorText
 import androidx.core.app.ActivityCompat
 import android.content.pm.PackageManager
+import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
 import androidx.core.content.ContextCompat
 import androidx.annotation.NonNull
 import com.google.gson.Gson
 import com.testforme.newregistr.objects.User
 import com.testforme.newregistr.stuff.application.SharedPrefHelper
+import androidx.core.content.ContextCompat.getSystemService
+import androidx.core.content.ContextCompat.getSystemService
+
+
+
+
+
+
 
 class ProfileFragment : Fragment(), ToastController, View.OnClickListener {
     companion object {
@@ -138,17 +148,22 @@ class ProfileFragment : Fragment(), ToastController, View.OnClickListener {
                     with(profileView.profileCard) {
                         with(profileViewModel) {
                             profileViewModel.apply {
-                                user = User("000",phoneView.text.toString(),
-                                    nameView.text.toString(),emailView.text.toString(),
-                                    birthdayView.text.toString(),user!!.avatarURL ,
-                                    "","","")
+                                user = User(
+                                    "000", phoneView.text.toString(),
+                                    nameView.text.toString(), emailView.text.toString(),
+                                    birthdayView.text.toString(), avatar.value.toString(),
+                                    "", "", ""
+                                )
                                 user?.let {
-                                    SharedPrefHelper.getInstance().writePreferences("user", Gson().toJson(it, User::class.java))
+                                    SharedPrefHelper.getInstance().writePreferences(
+                                        "user",
+                                        Gson().toJson(it, User::class.java)
+                                    )
                                 }
+                                activity?.window?.setSoftInputMode(
+                                    WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN
+                                )
                             }
-                            val imm: InputMethodManager =
-                                requireContext().getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
-                            imm.hideSoftInputFromWindow(requireView().windowToken, 0)
                             startRegister()
                         }
                     }
