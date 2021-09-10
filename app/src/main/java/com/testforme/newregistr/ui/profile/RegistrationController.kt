@@ -68,7 +68,9 @@ class RegistrationController(profileViewModelA: ProfileViewModel) {
 //                                profileViewModel.showProgressDialog = _showProgressDialog
                             }
                         }
+
                         profileViewModel.progressDialogHide()
+
                     }
 
                     override fun onFailure(call: Call<RegResponseBody>, t: Throwable) {

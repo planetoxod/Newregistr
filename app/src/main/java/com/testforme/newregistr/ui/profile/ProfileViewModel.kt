@@ -1,6 +1,7 @@
 package com.testforme.newregistr.ui.profile
 
 import android.content.Context
+import android.view.View
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -9,14 +10,12 @@ import com.testforme.newregistr.R
 import com.testforme.newregistr.objects.ErrorText
 import com.testforme.newregistr.objects.User
 import com.testforme.newregistr.stuff.application.SharedPrefHelper
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 
 class ProfileViewModel() : ViewModel() {
     private lateinit var profileModel: ProfileModel
     private var somethingWent: String=""
+    private var jobProgressDialog = GlobalScope.launch(){}
 
     fun setSomethingWent(context: Context){
         somethingWent=context.resources.getString(R.string.something_went)
@@ -94,10 +93,16 @@ class ProfileViewModel() : ViewModel() {
     }
 
     fun progressDialogShow() {
-        _showProgressDialog.postValue(true)
+        if (jobProgressDialog.isCompleted){
+            jobProgressDialog =GlobalScope.launch() {
+                delay(3000)
+                _showProgressDialog.postValue(true)
+            }
+        }
     }
 
     fun progressDialogHide() {
+        jobProgressDialog.cancel()
         _showProgressDialog.postValue(false)
     }
 }

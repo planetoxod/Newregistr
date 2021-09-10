@@ -36,6 +36,7 @@ class ProfileFragment : Fragment(), ToastController, View.OnClickListener {
         private const val REQUEST_CODE_PERMISSION = 1234
     }
 
+    private lateinit var jobProgressDialog: Job
     private lateinit var permissionController: PermissionController
     private lateinit var profileViewModel: ProfileViewModel
     private lateinit var profileModel: ProfileModel
@@ -97,9 +98,7 @@ class ProfileFragment : Fragment(), ToastController, View.OnClickListener {
         })
 
         profileViewModel.showProgressDialog.observe(viewLifecycleOwner, {
-            val waitView = binding.waitforView
-            if (it) waitView.root.visibility = View.VISIBLE
-            else waitView.root.visibility = View.GONE
+            actionProgressDialog(it)
         })
 
         profileView.scrollView.visibility = View.VISIBLE
@@ -109,6 +108,12 @@ class ProfileFragment : Fragment(), ToastController, View.OnClickListener {
         profileView.btnLogout.setOnClickListener(this)
 
         return root
+    }
+
+    private fun actionProgressDialog(boolean: Boolean){
+        val waitView = binding.waitforView
+        if (boolean) waitView.root.visibility = View.VISIBLE
+        else waitView.root.visibility = View.GONE
     }
 
     override fun showToast(text: String, isLong: Boolean) {
