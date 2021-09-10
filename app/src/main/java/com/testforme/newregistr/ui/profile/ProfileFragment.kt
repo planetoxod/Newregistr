@@ -28,11 +28,7 @@ import com.testforme.newregistr.objects.User
 import com.testforme.newregistr.stuff.application.SharedPrefHelper
 import androidx.core.content.ContextCompat.getSystemService
 import androidx.core.content.ContextCompat.getSystemService
-
-
-
-
-
+import kotlinx.coroutines.*
 
 
 class ProfileFragment : Fragment(), ToastController, View.OnClickListener {
@@ -100,6 +96,12 @@ class ProfileFragment : Fragment(), ToastController, View.OnClickListener {
             showToast(it)
         })
 
+        profileViewModel.showProgressDialog.observe(viewLifecycleOwner, {
+            val waitView = binding.waitforView
+            if (it) waitView.root.visibility = View.VISIBLE
+            else waitView.root.visibility = View.GONE
+        })
+
         profileView.scrollView.visibility = View.VISIBLE
 
         profileView.profileCard.btnSave.setOnClickListener(this)
@@ -115,28 +117,14 @@ class ProfileFragment : Fragment(), ToastController, View.OnClickListener {
     override fun showToast(text: ErrorText, isLong: Boolean) {
     }
 
-    override fun showProgressDialog() {
-
-//        if (!progressDialog.isShowing) {
-//                progressDialog.show()
-//        }
-    }
-
-    override fun hideProgressDialog() {
-
-//        if (progressDialog.isShowing) {
-//            progressDialog.dismiss()
-//        }
-    }
-
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
 
-    private val responseCallback = object :PermissionController.ResponseCallback {
+    private val responseCallback = object : PermissionController.ResponseCallback {
         override fun onResponseCallback() {
-           // imagePicker.show(childFragmentManager, null)
+            // imagePicker.show(childFragmentManager, null)
             super.onResponseCallback()
         }
     }

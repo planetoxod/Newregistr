@@ -9,6 +9,10 @@ import com.testforme.newregistr.R
 import com.testforme.newregistr.objects.ErrorText
 import com.testforme.newregistr.objects.User
 import com.testforme.newregistr.stuff.application.SharedPrefHelper
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 class ProfileViewModel() : ViewModel() {
     private lateinit var profileModel: ProfileModel
@@ -80,7 +84,20 @@ class ProfileViewModel() : ViewModel() {
    }
     var toast: LiveData<ErrorText> = _toast
 
+    private val _showProgressDialog = MutableLiveData<Boolean>().apply {
+        value = false
+    }
+    var showProgressDialog: LiveData<Boolean> = _showProgressDialog
+
     fun startRegister() {
         profileModel.startRegister()
+    }
+
+    fun progressDialogShow() {
+        _showProgressDialog.postValue(true)
+    }
+
+    fun progressDialogHide() {
+        _showProgressDialog.postValue(false)
     }
 }

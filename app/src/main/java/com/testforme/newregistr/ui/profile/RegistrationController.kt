@@ -1,5 +1,7 @@
 package com.testforme.newregistr.ui.profile
 
+import android.provider.Settings
+import androidx.lifecycle.MutableLiveData
 import com.testforme.newregistr.retrofit.RegResponseBody
 import com.testforme.newregistr.ui.profile.ProfileViewModel
 import com.testforme.newregistr.ui.profile.RegistrationApi
@@ -13,6 +15,9 @@ import com.testforme.newregistr.retrofit.ResponseCodes
 import com.testforme.newregistr.retrofit.RetrofitApi
 import com.testforme.newregistr.stuff.UserHelperImpl
 import com.testforme.newregistr.stuff.application.SharedPrefHelper
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -29,7 +34,7 @@ class RegistrationController(profileViewModelA: ProfileViewModel) {
             val errorList = checkStrings(profileViewModel.user!!)
             if (errorList.isEmpty()) {
 
-                //  mView?.showProgressDialog()
+                profileViewModel.progressDialogShow()
 
                 val zygoteUser = ZygoteUser(
                     profileViewModel.user!!.phone, profileViewModel.user!!.name,
@@ -53,16 +58,17 @@ class RegistrationController(profileViewModelA: ProfileViewModel) {
                         if (response.body() != null) {
 
                             with(response.body()) {
-
                                 if (this?.id =="") {
                                     //mView?.setServerError(it.code)
+                                    //profileViewModel.setServerError(it.code)
                                 }else{
                                      //mView?.auth()
                                 }
-
-                                //  mView?.hideProgressDialog()
+//                                val _showProgressDialog = MutableLiveData<Boolean>(true)
+//                                profileViewModel.showProgressDialog = _showProgressDialog
                             }
                         }
+                        profileViewModel.progressDialogHide()
                     }
 
                     override fun onFailure(call: Call<RegResponseBody>, t: Throwable) {
