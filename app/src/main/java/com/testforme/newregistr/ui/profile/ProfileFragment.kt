@@ -1,34 +1,23 @@
 package com.testforme.newregistr.ui.profile
 
 import android.Manifest
-import android.app.Activity
 import android.content.Context
-import android.content.Intent
-import android.net.Uri
+import android.content.pm.PackageManager
 import android.os.Bundle
-import android.provider.Settings
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
+import android.widget.EditText
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModelProvider
+import com.google.gson.Gson
 import com.testforme.newregistr.R
 import com.testforme.newregistr.databinding.FragmentProfileBinding
 import com.testforme.newregistr.databinding.ProfileContentBinding
 import com.testforme.newregistr.objects.ErrorText
-import androidx.core.app.ActivityCompat
-import android.content.pm.PackageManager
-import android.view.WindowManager
-import android.view.inputmethod.InputMethodManager
-import androidx.core.content.ContextCompat
-import androidx.annotation.NonNull
-import com.google.gson.Gson
 import com.testforme.newregistr.objects.User
 import com.testforme.newregistr.stuff.application.SharedPrefHelper
-import androidx.core.content.ContextCompat.getSystemService
-import androidx.core.content.ContextCompat.getSystemService
-import kotlinx.coroutines.*
 
 
 class ProfileFragment : Fragment(), ToastController, View.OnClickListener {
@@ -36,7 +25,6 @@ class ProfileFragment : Fragment(), ToastController, View.OnClickListener {
         private const val REQUEST_CODE_PERMISSION = 1234
     }
 
-    private lateinit var jobProgressDialog: Job
     private lateinit var permissionController: PermissionController
     private lateinit var profileViewModel: ProfileViewModel
     private lateinit var profileModel: ProfileModel
@@ -94,7 +82,7 @@ class ProfileFragment : Fragment(), ToastController, View.OnClickListener {
         })
 
         profileViewModel.toast.observe(viewLifecycleOwner, {
-            showToast(it)
+            context?.let { it1 -> showToast(it1,it,true) }
         })
 
         profileViewModel.showProgressDialog.observe(viewLifecycleOwner, {
@@ -106,6 +94,11 @@ class ProfileFragment : Fragment(), ToastController, View.OnClickListener {
         profileView.profileCard.btnSave.setOnClickListener(this)
         profileView.btnPhoto.setOnClickListener(this)
         profileView.btnLogout.setOnClickListener(this)
+        profileView.profileCard.nameView.setOnClickListener(this)
+        profileView.profileCard.emailView.setOnClickListener(this)
+        profileView.profileCard.phoneView.setOnClickListener(this)
+        profileView.profileCard.birthdayView.setOnClickListener(this)
+
 
         return root
     }
@@ -116,10 +109,12 @@ class ProfileFragment : Fragment(), ToastController, View.OnClickListener {
         else waitView.root.visibility = View.GONE
     }
 
-    override fun showToast(text: String, isLong: Boolean) {
+    override fun showToast(context: Context, text: String, isLong: Boolean) {
+        super.showToast(context,text, isLong)
     }
 
-    override fun showToast(text: ErrorText, isLong: Boolean) {
+    override fun showToast(context: Context,text: ErrorText, isLong: Boolean) {
+        super.showToast(context,text, isLong)
     }
 
     override fun onDestroyView() {
@@ -174,6 +169,18 @@ class ProfileFragment : Fragment(), ToastController, View.OnClickListener {
                         )
                     }
 
+                }
+                R.id.name_view -> {
+                    val view = p0 as EditText
+                    if (view.text.toString()==getString(R.string.something_went)){
+                        view.text.clear()
+                    }
+                }
+                R.id.email_view -> {
+                    val view = p0 as EditText
+                    if (view.text.toString()==getString(R.string.something_went)){
+                        view.text.clear()
+                    }
                 }
             }
         }

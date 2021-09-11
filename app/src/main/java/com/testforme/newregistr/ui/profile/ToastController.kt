@@ -4,9 +4,9 @@ import android.content.Context
 import android.widget.Toast
 import com.testforme.newregistr.R
 import com.testforme.newregistr.objects.ErrorText
-import com.testforme.newregistr.stuff.baseMVP.BaseView
+import com.testforme.newregistr.objects.ViewErrorCodes
 
-interface  ToastController:BaseView  {
+interface  ToastController {
 
     fun showToast(context: Context,text: String, isLong: Boolean) {
         if (isLong) {
@@ -53,4 +53,5 @@ interface  ToastController:BaseView  {
                 .also { it.show() }
         }
     }
+
 }

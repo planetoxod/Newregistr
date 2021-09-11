@@ -15,7 +15,7 @@ import retrofit2.Response
 
 class AuthorizationController(profileViewModelA: ProfileViewModel) {
     private lateinit var userHelper: UserHelperImpl
-    private val profileViewModel=profileViewModelA
+    private val profileViewModel = profileViewModelA
 
     fun authWithPass() {
         val errorList = checkStrings(profileViewModel.user)
@@ -26,10 +26,12 @@ class AuthorizationController(profileViewModelA: ProfileViewModel) {
 
             val headers = HashMap<String, String>()
             headers["Content-Type"] = "application/json"
-            val idDevice:Long=System.currentTimeMillis()
+            val idDevice: Long = System.currentTimeMillis()
             headers["X-APP-ID"] = idDevice.toString()
 
-            val authQuery = authApi.authWithPass(headers,loginBody)
+            val authQuery = authApi.authWithPass(headers, loginBody)
+
+            profileViewModel.progressDialogShow()
 
             authQuery.enqueue(object : Callback<AuthResponse> {
                 override fun onResponse(
@@ -37,7 +39,7 @@ class AuthorizationController(profileViewModelA: ProfileViewModel) {
                     response: Response<AuthResponse>
                 ) {
                     response.body()?.let { it ->
-                        //  mView?.hideProgressDialog()
+                        profileViewModel.progressDialogHide()
 
                         if (it.token != "") {
                             val user = userHelper.user
@@ -45,7 +47,10 @@ class AuthorizationController(profileViewModelA: ProfileViewModel) {
                                 user.token = it.token
                                 user.let {
                                     SharedPrefHelper.getInstance()
-                                        .writePreferences("user", Gson().toJson(it, User::class.java))
+                                        .writePreferences(
+                                            "user",
+                                            Gson().toJson(it, User::class.java)
+                                        )
                                     userHelper.user = it
                                     profileViewModel.showToast(ErrorText.Success)
                                     //  mView?.closeView()
@@ -55,15 +60,15 @@ class AuthorizationController(profileViewModelA: ProfileViewModel) {
                         } else profileViewModel.showToast(ErrorText.UnhandledError)
 
                     } ?: run {
-                        //                mView?.hideProgressDialog()
-//                mView?.showToast(ErrorText.UnhandledError)
+                        profileViewModel.progressDialogHide()
+                        profileViewModel.showToast(ErrorText.UnhandledError)
 
                     }
                 }
 
                 override fun onFailure(call: Call<AuthResponse>, t: Throwable) {
-                    //            mView?.hideProgressDialog()
-//                mView?.showToast(ErrorText.LoadingError)
+                    profileViewModel.progressDialogHide()
+                    profileViewModel.showToast(ErrorText.LoadingError)
                 }
             })
         } else {
