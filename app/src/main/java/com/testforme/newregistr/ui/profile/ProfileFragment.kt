@@ -1,13 +1,11 @@
 package com.testforme.newregistr.ui.profile
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.pm.PackageManager
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.view.WindowManager
+import android.view.*
 import android.widget.EditText
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -20,7 +18,7 @@ import com.testforme.newregistr.objects.User
 import com.testforme.newregistr.stuff.application.SharedPrefHelper
 
 
-class ProfileFragment : Fragment(), ToastController, View.OnClickListener {
+class ProfileFragment : Fragment(), ToastController, View.OnClickListener,View.OnTouchListener {
     companion object {
         private const val REQUEST_CODE_PERMISSION = 1234
     }
@@ -35,6 +33,7 @@ class ProfileFragment : Fragment(), ToastController, View.OnClickListener {
     // onDestroyView.
     private val binding get() = _binding!!
 
+    @SuppressLint("ClickableViewAccessibility")
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -99,6 +98,10 @@ class ProfileFragment : Fragment(), ToastController, View.OnClickListener {
         profileView.profileCard.phoneView.setOnClickListener(this)
         profileView.profileCard.birthdayView.setOnClickListener(this)
 
+        profileView.profileCard.nameView.setOnTouchListener(this)
+        profileView.profileCard.emailView.setOnTouchListener(this)
+        profileView.profileCard.phoneView.setOnTouchListener(this)
+        profileView.profileCard.birthdayView.setOnTouchListener(this)
 
         return root
     }
@@ -170,18 +173,6 @@ class ProfileFragment : Fragment(), ToastController, View.OnClickListener {
                     }
 
                 }
-                R.id.name_view -> {
-                    val view = p0 as EditText
-                    if (view.text.toString()==getString(R.string.something_went)){
-                        view.text.clear()
-                    }
-                }
-                R.id.email_view -> {
-                    val view = p0 as EditText
-                    if (view.text.toString()==getString(R.string.something_went)){
-                        view.text.clear()
-                    }
-                }
             }
         }
     }
@@ -204,6 +195,22 @@ class ProfileFragment : Fragment(), ToastController, View.OnClickListener {
                 return
             }
         }
+    }
+
+    @SuppressLint("ClickableViewAccessibility")
+    override fun onTouch(v: View?, event: MotionEvent?): Boolean {
+        if (v != null) {
+            when (v.id) {
+               R.id.name_view,R.id.phone_view,R.id.email_view,R.id.birthday_view->{
+                   val view=(v as EditText)
+                   if (view.text.toString()==getString(R.string.something_went)){
+                       view.text.clear()
+                       view.setOnTouchListener(null)
+                   }
+               }
+            }
+        }
+        return true
     }
 
 }
