@@ -64,9 +64,9 @@ class RegistrationController(profileViewModelA: ProfileViewModel) {
                                 }else{
                                      //mView?.auth()
                                 }
-//                                val _showProgressDialog = MutableLiveData<Boolean>(true)
-//                                profileViewModel.showProgressDialog = _showProgressDialog
                             }
+                        }else{
+                            profileViewModel.showToast(response.message())
                         }
 
                         profileViewModel.progressDialogHide()

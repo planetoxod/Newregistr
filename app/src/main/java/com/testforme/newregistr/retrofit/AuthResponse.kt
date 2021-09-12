@@ -9,9 +9,5 @@ data class AuthResponse(
     @SerializedName("dt_create_token")
     val dt_create_token: String,
     @SerializedName("dt_expiration_token")
-    val dt_expiration_token: String,
-    @SerializedName("detail")
-    val detail: String,
-    @SerializedName("msg")
-    val message: String
+    val dt_expiration_token: String
 )

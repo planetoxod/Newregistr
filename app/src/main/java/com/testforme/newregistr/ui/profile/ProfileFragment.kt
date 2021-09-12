@@ -84,6 +84,10 @@ class ProfileFragment : Fragment(), ToastController, View.OnClickListener,View.O
             context?.let { it1 -> showToast(it1,it,true) }
         })
 
+        profileViewModel.toastText.observe(viewLifecycleOwner, {
+            context?.let { it1 -> showToast(it1,it,true) }
+        })
+
         profileViewModel.showProgressDialog.observe(viewLifecycleOwner, {
             actionProgressDialog(it)
         })
@@ -210,7 +214,7 @@ class ProfileFragment : Fragment(), ToastController, View.OnClickListener,View.O
                }
             }
         }
-        return true
+        return false
     }
 
 }

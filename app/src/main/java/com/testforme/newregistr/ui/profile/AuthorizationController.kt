@@ -53,13 +53,13 @@ class AuthorizationController(profileViewModelA: ProfileViewModel) {
                                         )
                                     userHelper.user = it
                                     profileViewModel.showToast(ErrorText.Success)
-                                    //  mView?.closeView()
                                 }
                             }
 
                         } else profileViewModel.showToast(ErrorText.UnhandledError)
 
                     } ?: run {
+
                         profileViewModel.progressDialogHide()
                         profileViewModel.showToast(ErrorText.UnhandledError)
 

@@ -31,6 +31,10 @@ class ProfileViewModel() : ViewModel() {
        _toast.value=errorText
     }
 
+    fun showToast(text: String){
+        _toastText.value=text
+    }
+
     private fun changeField(){
         _name.value = user?.name ?: somethingWent
         _phone.value = user?.phone ?: somethingWent
@@ -78,10 +82,11 @@ class ProfileViewModel() : ViewModel() {
     }
     val enabled: LiveData<String> = _enabled
 
-   private val _toast = MutableLiveData<ErrorText>().apply {
-        value = ErrorText.NoError
-   }
+   private val _toast = MutableLiveData<ErrorText>()
     var toast: LiveData<ErrorText> = _toast
+
+    private val _toastText = MutableLiveData<String>()
+    var toastText: LiveData<String> = _toastText
 
     private val _showProgressDialog = MutableLiveData<Boolean>().apply {
         value = false

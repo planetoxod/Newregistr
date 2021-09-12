@@ -54,16 +54,23 @@
             app:layout_constraintStart_toStartOf="@+id/background"
             app:layout_constraintTop_toBottomOf="@+id/margin">
 
-            <ImageView
-                android:id="@+id/iconView"
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:adjustViewBounds="true"
-                android:background="@color/result_neutral"
-                android:scaleType="centerCrop"
-                android:visibility="visible"
-                tools:ignore="ContentDescription"
-                tools:srcCompat="@tools:sample/avatars" />
+                app:cardCornerRadius="50dp">
+
+                <ImageView
+                    android:id="@+id/iconView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:adjustViewBounds="true"
+                    android:background="@color/result_neutral"
+                    android:scaleType="centerCrop"
+                    android:visibility="visible"
+                    app:srcCompat="@drawable/ic_user"
+                    tools:ignore="ContentDescription"
+                    tools:srcCompat="@tools:sample/avatars" />
+            </androidx.cardview.widget.CardView>
 
         </LinearLayout>
 

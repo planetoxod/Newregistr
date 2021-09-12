@@ -73,5 +73,10 @@
     <string name="title_stop" translatable="false">stop</string>
     <string name="title_cancel" translatable="false">Cancel</string>
     <string name="title_help" translatable="false">help</string>
+    <string name="hint_name">Ivanov Ivan</string>
+    <string name="hint_phone" translatable="false">+7(934)789–56–78</string>
+    <string name="hint_email" translatable="false">ivanov19@mail.ru</string>
+    <string name="hint_birthday" translatable="false">1987–10–24</string>
+
 
 </resources>
