@@ -13,12 +13,13 @@
     <string name="menu_registration">Registration</string>
     <string name="menu_authorization">Authorization</string>
     <string name="menu_profile" translatable="false">Profile</string>
+
     <string name="enable" translatable="false">Enable</string>
     <string name="disabled" translatable="false">Disabled</string>
     <string name="def_name" translatable="false">Ivanov Ivan Ivanovich</string>
 
     <string name="app_package" translatable="false">com.testforme.newregistr</string>
-    <string name="site_url" translatable="false">netoct.ru</string>
+    <string name="site_url" translatable="false">blabla.ru</string>
 
     <string name="file_provider" translatable="false">com.testforme.newregistr.fileprovider</string>
 

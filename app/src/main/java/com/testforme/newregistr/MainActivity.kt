@@ -19,7 +19,7 @@ import com.testforme.newregistr.stuff.application.SharedPrefHelper
 class MainActivity : AppCompatActivity() {
     companion object {
 
-        const val MAIN_SITE_URL = "https://netoct.ru"
+        const val MAIN_SITE_URL = "https://blabla.ru"
 
     }
 
