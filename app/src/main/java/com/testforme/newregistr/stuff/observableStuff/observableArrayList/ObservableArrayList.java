@@ -6,7 +6,7 @@ import android.os.Parcelable;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.your_teachers.trafficrules.stuff.observableStuff.observableArrayList.ObservableArrayListListener;
+import com.testforme.newregistr.stuff.observableStuff.observableArrayList.ObservableArrayListListener;
 
 import java.util.ArrayList;
 import java.util.Collection;

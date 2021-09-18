@@ -17,10 +17,10 @@
     <string name="disabled" translatable="false">Disabled</string>
     <string name="def_name" translatable="false">Ivanov Ivan Ivanovich</string>
 
-    <string name="app_package" translatable="false">com.your_teachers.trafficrules</string>
+    <string name="app_package" translatable="false">com.testforme.newregistr</string>
     <string name="site_url" translatable="false">netoct.ru</string>
 
-    <string name="file_provider" translatable="false">com.your_teachers.trafficrules.fileprovider</string>
+    <string name="file_provider" translatable="false">com.testforme.newregistr.fileprovider</string>
 
     <string name="yes" translatable="false">Yes</string>
     <string name="no" translatable="false">No</string>
@@ -67,7 +67,7 @@
     <string name="pick_single" translatable="false">Select image</string>
     <string name="image" translatable="false">image</string>
     <string name="something_went" translatable="false">Something went…</string>
-    <string name="save" translatable="false">Save</string>
+    <string name="save">Save</string>
     <string name="description" translatable="false">Description</string>
     <string name="license_txt" translatable="false">Unknown error, contact the developer.</string>
     <string name="title_stop" translatable="false">stop</string>
